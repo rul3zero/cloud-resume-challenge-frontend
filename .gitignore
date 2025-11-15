@@ -17,8 +17,8 @@ desktop.ini
 *.swo
 *~
 
-# Documentation (only README.md is committed)
-*.md
+# Documentation (only README.md is committed, exclude root-level .md files)
+/*.md
 !README.md
 
 # Node modules (if using npm/yarn)
