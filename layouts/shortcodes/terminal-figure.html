@@ -1,0 +1,42 @@
+{{/* 
+   Params:
+     - src (required) : path to image (absolute or relative filename)
+     - alt (optional)
+     - caption (optional)
+     - align: left | right | center (default center)
+     - width: number (e.g. 50 -> 50%) or "50%"/"300px"
+*/}}
+
+{{ $src := .Get "src" }}
+{{ if not $src }}
+  {{ errorf "terminal-figure shortcode requires a 'src' parameter" }}
+{{ end }}
+
+{{ $align := .Get "align" | default "center" }}
+{{ $width := .Get "width" }}
+
+{{ $finalWidth := "" }}
+{{ if $width }}
+  {{ if (findRE "^[0-9]+$" $width) }}
+    {{ $finalWidth = printf "%s%%" $width }}
+  {{ else }}
+    {{ $finalWidth = $width }}
+  {{ end }}
+{{ end }}
+
+{{ $imgSrc := $src }}
+{{ if and (not (hasPrefix $src "/")) (not (hasPrefix $src "http")) }}
+  {{ $imgSrc = printf "/images/%s" $src }}
+{{ end }}
+
+<figure class="figure figure-{{ $align }}" {{ if $finalWidth }}style="width: {{ $finalWidth }};"{{ end }}>
+  <div class="terminal-figure-container">
+    <img src="{{ $imgSrc }}" alt="{{ .Get "alt" | default "" }}" class="terminal-figure-img" />
+    <div class="terminal-figure-overlay">
+      <span class="terminal-figure-icon">⊕</span>
+    </div>
+  </div>
+  {{ with .Get "caption" }}
+    <figcaption class="caption">{{ . }}</figcaption>
+  {{ end }}
+</figure>

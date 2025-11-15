@@ -1,0 +1,142 @@
+baseURL = "https://joshcarl.dev/"
+languageCode = "en-us"
+title = "Josh Carl"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+codeFences = true
+guessSyntax = true
+noClasses = true     # inline styles so we get colors immediately
+style = "github-dark" # pick a built-in Chroma style
+lineNos = true        # show line numbers (highlight hook also requests them)
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  author = "Joshua Carl Soguilon"
+  greetings = "Hello, World!"
+  
+  recaptchaKey = "6LeSLuQrAAAAAHVek8zporz-qPWGCKwxn3r0S_AR"
+  
+  # Site Logo
+  logo = "/logo.svg"  # Path to your logo (put logo.svg in /static/ folder)
+  
+  # SEO Settings
+  description = "Joshua Carl Soguilon - BS ECE Student, AWS re/Start Learner, Cybersecurity Enthusiast. Portfolio showcasing projects in ethical hacking, cloud computing, IoT development, and full-stack web development."
+  keywords = ["cybersecurity", "ethical hacking", "penetration testing", "cloud computing", "AWS", "IoT", "ESP32", "full-stack development", "web security", "portfolio", "tech blog"]
+  
+  # Open Graph / Social Media Cards
+  images = ["/images/og-image.jpg"]  # Default OG image (create a 1200x630px image)
+  
+  # Twitter Card
+  twitterCard = "summary_large_image"
+  twitterSite = "@yourhandle"  # Your Twitter handle
+  twitterCreator = "@yourhandle"
+  
+  # Additional SEO
+  locale = "en_US"
+  siteName = "Joshua Carl Soguilon"
+  
+  # Google Site Verification (add your verification code)
+  # googleSiteVerification = "your-google-verification-code"
+  
+  # Bing Site Verification (add your verification code)
+  # bingSiteVerification = "your-bing-verification-code"
+
+  # Social links - Add any combination you need
+  # Supported platforms: github, linkedin, twitter, x, instagram, youtube, 
+  # discord, twitch, reddit, medium, dribbble, behance, codepen, 
+  # stackoverflow, mastodon, email, website
+  
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/rul3zero"
+
+  [[params.social]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/joshsoguilon"
+
+  # [[params.social]]
+  #  name = "twitter"
+  #  url = "https://twitter.com/yourhandle"
+
+  # [[params.social]]
+  #   name = "x"
+  #   url = "https://x.com/yourhandle"
+
+  # [[params.social]]
+  #   name = "instagram"
+  #   url = "https://instagram.com/yourusername"
+
+  # [[params.social]]
+  #   name = "youtube"
+  #   url = "https://youtube.com/@yourchannel"
+
+  # [[params.social]]
+  #   name = "discord"
+  #   url = "https://discord.gg/yourinvite"
+
+  # [[params.social]]
+  #   name = "twitch"
+  #   url = "https://twitch.tv/yourusername"
+
+  # [[params.social]]
+  #   name = "reddit"
+  #   url = "https://reddit.com/u/yourusername"
+
+  # [[params.social]]
+  #   name = "medium"
+  #   url = "https://medium.com/@yourusername"
+
+  # [[params.social]]
+  #   name = "dribbble"
+  #   url = "https://dribbble.com/yourusername"
+
+  # [[params.social]]
+  #   name = "behance"
+  #   url = "https://behance.net/yourusername"
+
+  # [[params.social]]
+  #   name = "codepen"
+  #   url = "https://codepen.io/yourusername"
+
+  # [[params.social]]
+  #   name = "stackoverflow"
+  #   url = "https://stackoverflow.com/users/yourid"
+
+  # [[params.social]]
+  #   name = "mastodon"
+  #   url = "https://mastodon.social/@yourusername"
+
+
+  # [[params.social]]
+  #   name = "website"
+  #   url = "https://yourportfolio.com"
+
+   [[params.social]]
+     name = "pentesterlab"
+     url = "https://pentesterlab.com/profile/rulezero"
+
+   [[params.social]]
+    name = "datacamp"
+    url = "https://www.datacamp.com/portfolio/lrjcsoguilon"  
+
+   [[params.social]]
+     name = "email"
+     url = "mailto:work@joshcarl.dev"
+
+# Sitemap Configuration for better SEO
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Permalinks structure (SEO-friendly URLs)
+[permalinks]
+  blog = "/blog/:slug/"
+  tags = "/tags/:slug/"
+  categories = "/categories/:slug/"

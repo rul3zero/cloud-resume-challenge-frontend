@@ -1,0 +1,22 @@
+{{ define "main" }}
+<nav class="breadcrumb">
+  <a href="/">Home</a>
+  <span>→</span>
+  <a href="/tags/">Tags</a>
+</nav>
+
+<main class="container">
+  <header>
+    <h1>All Tags</h1>
+  </header>
+  <ul class="tag-list">
+    {{ range $tag, $pages := .Site.Taxonomies.tags }}
+      <li>
+        <a href="/tags/{{ $tag | urlize }}">
+          {{ $tag }} ({{ $pages.Count }})
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</main>
+{{ end }}

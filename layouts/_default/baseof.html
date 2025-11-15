@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+    
+<head>
+    {{ partial "head.html" . }}
+    <script>(function(){try{var de=document.documentElement;var c=localStorage.getItem('sidebarCollapsed')==='1';de.classList.add('preload');if(c){de.classList.add('sidebar-collapsed');de.setAttribute('data-sidebar-initial','collapsed');}else{de.classList.add('sidebar-expanded');de.setAttribute('data-sidebar-initial','expanded');}}catch(e){}})();</script>
+    {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    
+    <!-- reCAPTCHA v3 -->
+    {{ if .Site.Params.recaptchaKey }}
+    <meta name="recaptcha-key" content="{{ .Site.Params.recaptchaKey }}">
+    <script src="https://www.google.com/recaptcha/api.js?render={{ .Site.Params.recaptchaKey }}"></script>
+    {{ end }}
+</head>
+
+<body>
+    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle navigation" aria-controls="siteSidebar" aria-expanded="true">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <div class="page-shell">
+        {{ partial "sidebar.html" . }}
+        <div class="page-main">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </div>
+    {{ partial "footer.html" . }}
+    
+    {{ $sidebarJs := resources.Get "js/sidebar.js" | minify }}
+    <script defer src="{{ $sidebarJs.RelPermalink }}"></script>
+    {{ $copyJs := resources.Get "js/copycode.js" | minify }}
+    <script defer src="{{ $copyJs.RelPermalink }}"></script>
+    {{ $lightboxJs := resources.Get "js/lightbox.js" | minify }}
+    <script defer src="{{ $lightboxJs.RelPermalink }}"></script>
+    {{ $typewriterJs := resources.Get "js/typewriter.js" | minify }}
+    <script defer src="{{ $typewriterJs.RelPermalink }}"></script>
+    {{ if .Site.Params.recaptchaKey }}
+    {{ $recaptchaJs := resources.Get "js/recaptcha.js" | minify }}
+    <script defer src="{{ $recaptchaJs.RelPermalink }}"></script>
+    {{ end }}
+</body>
+</html>

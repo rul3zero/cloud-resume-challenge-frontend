@@ -1,0 +1,46 @@
+{{/* Torchlight client-side enhancer (experimental). WARNING: Exposes token to clients. */}}
+{{ $cfg := site.Params.torchlight }}
+{{ if and $cfg $cfg.enabled $cfg.token }}
+{{ $conf := dict "token" $cfg.token "theme" (default "" $cfg.theme) "version" (default "1" $cfg.version) }}
+<script id="torchlight-config" type="application/json">{{ $conf | jsonify }}</script>
+<script>
+(function(){
+  const cfgEl = document.getElementById('torchlight-config');
+  if(!cfgEl) return;
+  let cfg={}; try{ cfg = JSON.parse(cfgEl.textContent); }catch(e){ return; }
+  const TL_TOKEN = cfg.token; if(!TL_TOKEN) return;
+  const TL_THEME = cfg.theme || '';
+  const CACHE_VERSION = cfg.version || '1';
+  const VERSION_KEY = 'torchlight-cache-version';
+  const STORAGE_PREFIX = 'torchlight.cache.';
+
+  try {
+    if (localStorage.getItem(VERSION_KEY) !== CACHE_VERSION) {
+      Object.keys(localStorage).filter(k => k.startsWith(STORAGE_PREFIX)).forEach(k => localStorage.removeItem(k));
+      localStorage.setItem(VERSION_KEY, CACHE_VERSION);
+    }
+  } catch(e) {}
+
+  function hash(str){ let h=0, i=0, chr; if(!str) return '0'; for(i=0;i<str.length;i++){ chr=str.charCodeAt(i); h=((h<<5)-h)+chr; h|=0; } return h.toString(); }
+
+  async function highlightBlock(block){
+    const codeEl = block.querySelector('pre code'); if(!codeEl) return;
+    const lang = block.getAttribute('data-lang') || 'text';
+    const raw = codeEl.innerText;
+    const cacheKey = STORAGE_PREFIX + hash(lang+'::'+raw);
+    try { const cached = localStorage.getItem(cacheKey); if(cached){ codeEl.innerHTML=cached; block.classList.add('torchlight-ready'); return; } } catch(e) {}
+    try {
+      const payload = { files: [ { language: lang, contents: raw, theme: TL_THEME || undefined } ] };
+      const resp = await fetch('https://api.torchlight.dev/highlight', { method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+TL_TOKEN }, body: JSON.stringify(payload) });
+      if(!resp.ok) throw new Error('Torchlight response '+resp.status);
+      const data = await resp.json(); const f = data && data.files && data.files[0];
+      if(f && f.highlighted){ codeEl.innerHTML = f.highlighted; block.classList.add('torchlight-ready'); try { localStorage.setItem(cacheKey, f.highlighted); } catch(e) {} }
+    } catch(e){ block.classList.add('torchlight-failed'); console.warn('[Torchlight] highlight failed', e); }
+  }
+
+  function run(){ document.querySelectorAll('.code-block[data-torchlight]:not(.torchlight-done)').forEach(b=>{ b.classList.add('torchlight-done'); highlightBlock(b); }); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('pageshow', e=>{ if(e.persisted) run(); });
+})();
+</script>
+{{ end }}

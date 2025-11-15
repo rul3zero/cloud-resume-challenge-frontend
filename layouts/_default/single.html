@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{ if or (eq .Section "blog") (eq .Section "portfolio") (in (slice "categories" "tags") .Section) }}
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span>→</span>
+    {{ if eq .Section "blog" }}
+      <a href = "/blog">Blog</a>
+    {{ else }}
+      <a href="/{{ .Section }}/">{{ title .Section }}</a>
+    {{ end }}
+  {{ if .IsPage }}<span>→</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+  </nav>
+{{ end }}
+
+<main class="container">
+  <article>
+        <header>
+            <h1>{{ .Title }}</h1>
+            {{ with .Params.categories }}
+              <div class="category-badges">
+                <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+                {{ range . }}
+                  <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            {{ with .Params.tags }}
+              <div class="tags tags-inline">
+                <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+                {{ range . }}
+                  <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+                {{ end }}
+              </div>
+            {{ end }}
+            {{ if .Date }}
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{ end }}
+      {{/* author removed */}}
+        </header>
+        
+        <section class="content">
+            {{ .Content }}
+        </section>
+    </article>
+</main>
+{{ end }}

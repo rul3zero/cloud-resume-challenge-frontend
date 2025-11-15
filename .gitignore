@@ -1,0 +1,33 @@
+# Hugo generated files
+/public/
+/resources/_gen/
+
+# Hugo development
+.hugo_build.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation (only README.md is committed)
+*.md
+!README.md
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Others
+drafts/
+

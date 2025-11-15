@@ -1,0 +1,117 @@
+{{ define "main" }}
+<main class="container">
+    <h1 id="typewriter-greeting" data-text="{{ .Site.Params.greetings | default "Welcome" }}"></h1>
+    {{ .Content }}
+    
+    <section class="recent-posts">
+        <h2><a href="/portfolio/">Portfolio</a></h2>
+                {{/* Get all portfolio items and filter by show status */}}
+                {{ $all := where .Site.RegularPages "Section" "portfolio" }}
+                {{ $important := where $all "Params.show" "important" }}
+                {{ $default := where $all "Params.show" "default" }}
+                {{ $noshow := where $all "Params.show" "none" }}
+                {{/* For items without show param, treat as default */}}
+                {{ $noParam := where $all "Params.show" nil }}
+                {{ $default = union $default $noParam }}
+                {{/* Sort both by date (newest first) */}}
+                {{ $important = sort $important "Date" "desc" }}
+                {{ $default = sort $default "Date" "desc" }}
+                {{/* Combine: important first, then default */}}
+                {{ $featured := union $important $default }}
+                {{ range first 5 $featured }}
+                        <article class="post-card">
+                {{ $page := . }}
+                {{ with .Params.featured_image }}
+                    <div class="featured-image">
+                        <a href="{{ $page.RelPermalink }}">
+                            <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy">
+                        </a>
+                    </div>
+                {{ end }}
+                <div class="post-content">
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                                                {{ with .Params.categories }}
+                                                    <div class="category-badges">
+                                                        <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+                                                        {{ range . }}
+                                                            <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                                                {{ with .Params.tags }}
+                                                    <div class="tags tags-bottom">
+                                                        <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+                                                        {{ range . }}
+                                                            <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                                                {{ with .Params.description }}
+                                                    <p class="post-summary">{{ . }}</p>
+                                                {{ end }}
+                </div>
+            </article>
+        {{ end }}
+        <div class="btn-center">
+            <a href="/portfolio" class="btn btn-primary">More Portfolio</a>
+        </div>
+    </section>
+    <hr>
+    <section class="recent-posts">
+        <h2><a href="/blog">Blogs</a></h2>
+                {{/* Get all blog posts and filter by show status */}}
+                {{ $all := where .Site.RegularPages "Section" "blog" }}
+                {{ $important := where $all "Params.show" "important" }}
+                {{ $default := where $all "Params.show" "default" }}
+                {{ $noshow := where $all "Params.show" "none" }}
+                {{/* For items without show param, treat as default */}}
+                {{ $noParam := where $all "Params.show" nil }}
+                {{ $default = union $default $noParam }}
+                {{/* Sort both by date (newest first) */}}
+                {{ $important = sort $important "Date" "desc" }}
+                {{ $default = sort $default "Date" "desc" }}
+                {{/* Combine: important first, then default */}}
+                {{ $featured := union $important $default }}
+                {{ range first 5 $featured }}
+                        <article class="post-card">
+                {{ $page := . }}
+                {{ with .Params.featured_image }}
+                    <div class="featured-image">
+                        <a href="{{ $page.RelPermalink }}">
+                            <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy">
+                        </a>
+                    </div>
+                {{ end }}
+                <div class="post-content">
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                                                {{ with .Params.categories }}
+                                                    <div class="category-badges">
+                                                        <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+                                                        {{ range . }}
+                                                            <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                                                {{ with .Params.tags }}
+                                                    <div class="tags tags-bottom">
+                                                        <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+                                                        {{ range . }}
+                                                            <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                                                {{ with .Params.description }}
+                                                    <p class="post-summary">{{ . }}</p>
+                                                {{ end }}
+                </div>
+            </article>
+        {{ end }}
+        <div class="btn-center">
+            <a href="/blog" class="btn btn-primary">More Blogs</a>
+        </div>
+    </section>
+    <hr>
+</main>
+{{ end }}

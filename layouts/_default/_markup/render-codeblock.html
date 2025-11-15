@@ -1,0 +1,10 @@
+{{/* Code block render with Chroma + line numbers + copy button */}}
+{{ $raw := .Inner | string }}
+{{ $lang := .Type | default "text" }}
+{{ if eq (lower $lang) "sh" }}{{ $lang = "bash" }}{{ end }}
+{{ $opts := dict "linenos" "table" }}
+{{ $colored := highlight $raw $lang $opts }}
+<div class="code-block" data-lang="{{ $lang }}">
+  <button class="copy-button" type="button" aria-label="Copy code"><span class="copy-label">Copy</span></button>
+  {{ $colored | safeHTML }}
+</div>

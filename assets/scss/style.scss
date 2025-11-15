@@ -1,0 +1,2285 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Core theme tokens
+$primary-color: #00e5ff;
+$accent-color: #18ffff;
+$text-color: #b0bec5;
+$secondary-text: #78909c;
+$background-color: #0d1117;
+$surface-color: #161b22;
+$border-color: #21262d;
+$light-gray: #30363d;
+
+// Fonts
+$font-mono: 'Anonymous Pro', 'Courier New', monospace;
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+.breadcrumb {
+  font-family: $font-mono;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.6rem 2.4rem 2.4rem 2.4rem; // Added horizontal padding
+  width: 100%;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.breadcrumb a {
+  color: $secondary-text;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.breadcrumb span {
+  color: $secondary-text;
+}
+
+// Mobile breadcrumb adjustments
+@media (max-width: 768px) {
+  .breadcrumb {
+    padding: 0.5rem 1.6rem 1.2rem 1.6rem; // Added horizontal padding
+    font-size: 1.2rem;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    padding: 0.3rem 1.2rem 1rem 1.2rem !important;
+    font-size: 1.05rem !important;
+    display: inline-flex !important;
+    gap: 0 !important;
+    align-items: baseline !important;
+  }
+  
+  .breadcrumb > * {
+    display: inline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  .breadcrumb a:first-child::after {
+    content: '\00a0\00a0' !important; // Two non-breaking spaces after Home
+  }
+  
+  .breadcrumb span {
+    opacity: 0.65 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .breadcrumb span::after {
+    content: '\00a0\00a0' !important; // Two non-breaking spaces after arrow
+  }
+}
+
+/* Article header spacing (restored cleanly) */
+article {
+  margin-bottom: 4.8rem;
+  padding: 2.4rem 0;
+  
+  header {
+    margin-bottom: 2.4rem;
+    time {
+      font-family: $font-mono;
+      color: $secondary-text;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+// Improved paragraph spacing and readability
+p {
+    margin: 0 0 1.8rem 0;
+    line-height: 1.8; // More comfortable line height
+    font-weight: 300;
+}
+
+// Code and preformatted text
+/* Inline code (avoid overriding Chroma token colors in fenced blocks) */
+code {
+  font-family: $font-mono;
+  background: $surface-color;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  /* Accent applied only when not inside pre */
+  word-break: break-word; // Prevent code overflow on mobile
+}
+
+/* If the code element is directly inside prose (not within a pre), give it accent color */
+:not(pre) > code { color: $accent-color; }
+
+/* Chroma output often wraps as: <div class="highlight"><pre class="chroma"><code>... <span style="color:#..."> */
+/* Ensure we don't re-color the whole block: inherit so span styles dominate */
+pre code { color: inherit; }
+
+pre {
+    font-family: $font-mono;
+    background: $surface-color;
+    padding: 1.6rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    border-left: 3px solid $accent-color;
+    margin: 2.4rem 0;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+// Mobile code block adjustments
+@media (max-width: 768px) {
+  pre {
+    padding: 1.2rem;
+    margin: 1.8rem 0;
+    font-size: 1.3rem;
+  }
+  
+  code {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  pre {
+    padding: 1rem;
+    margin: 1.5rem -1.2rem; // Extend to screen edges for more width
+    border-radius: 0;
+    font-size: 1.2rem;
+  }
+  
+  code {
+    font-size: 0.8em;
+  }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 200;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  // Better touch target for mobile
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(24,255,255,0.08);
+  border-color: $accent-color;
+}
+
+// Improve toggle button on mobile
+@media (max-width: 480px) {
+  .sidebar-toggle {
+    top: 1rem;
+    left: 1rem;
+    width: 4rem;
+    height: 4rem;
+    gap: 5px;
+  }
+  
+  .sidebar-toggle .bar {
+    width: 18px;
+    height: 2.5px;
+  }
+}
+
+.sidebar-toggle .bar {
+  width: 16px;
+  height: 2px;
+  background: $accent-color;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* Default state: X (when sidebar is open) */
+.sidebar-toggle .bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar-toggle .bar:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sidebar-toggle .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-toggle .bar:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Transform into hamburger menu (when sidebar is collapsed/closed) */
+.sidebar-toggle.is-collapsed .bar {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+}
+
+.sidebar-toggle.is-collapsed .bar:nth-child(1) {
+  transform: none;
+}
+
+.sidebar-toggle.is-collapsed .bar:nth-child(2) {
+  opacity: 1;
+  transform: none;
+}
+
+.sidebar-toggle.is-collapsed .bar:nth-child(3) {
+  transform: none;
+}
+
+/* Collapsed sidebar state */
+body.sidebar-collapsed .site-sidebar,
+html.sidebar-collapsed .site-sidebar {
+  transform: translateX(-100%);
+}
+
+body .site-sidebar {
+  transition: transform 0.3s ease;
+}
+
+/* Disable transitions before JS applies initial state to avoid flash */
+html.preload body .site-sidebar,
+html.preload .sidebar-toggle,
+html.preload body.sidebar-collapsed .page-main {
+  transition: none !important;
+}
+
+/* Shift main content when collapsed */
+body.sidebar-collapsed .page-main,
+html.sidebar-collapsed .page-main {
+  margin-left: 0;
+}
+
+/* Adjust toggle position when sidebar is open (desktop) */
+@media (min-width: 700px) {
+  html.sidebar-expanded .sidebar-toggle {
+    left: 292px; /* sidebar width (280) + spacing */
+  }
+}
+
+/* Mobile: sidebar overlays and toggle stays at edge */
+@media (max-width: 699px) {
+  .site-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    z-index: 250; /* Higher than overlay (150) and toggle (200) */
+  }
+  body.sidebar-collapsed .site-sidebar,
+  html.sidebar-collapsed .site-sidebar {
+    transform: translateX(-100%);
+  }
+  html.sidebar-expanded body {
+    overflow: hidden; /* prevent background scroll when open */
+    position: fixed; /* Prevent scrolling on iOS */
+    width: 100%;
+  }
+  html.sidebar-collapsed body {
+    overflow: auto;
+    position: relative;
+  }
+  /* Dark overlay when open */
+  html.sidebar-expanded body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(2px);
+    z-index: 150; /* Below sidebar (250) but above content */
+    -webkit-tap-highlight-color: transparent;
+  }
+  html.sidebar-collapsed body::after { display: none; }
+  .page-main { margin-left: 0 !important; }
+  
+  /* Move toggle button to right side when sidebar is open */
+  html.sidebar-expanded .sidebar-toggle {
+    left: auto;
+    right: 1rem; /* Position on right side with spacing */
+    z-index: 260; /* Above sidebar so it's accessible */
+  }
+}
+
+/* Extra small phones - narrower sidebar */
+@media (max-width: 360px) {
+  .site-sidebar {
+    width: 240px;
+  }
+  
+  html.sidebar-expanded .sidebar-toggle {
+    left: auto;
+    right: 0.8rem; /* Slightly less spacing on small screens */
+    z-index: 260;
+  }
+  
+  .page-main {
+    padding-top: 5.5rem; /* Slightly less padding on small screens */
+  }
+}
+
+/* Make the sidebar menu scrollable only on phones (keep desktop unchanged) */
+@media (max-width: 699px) {
+  .site-sidebar {
+    /* Ensure the sidebar inner content can scroll if taller than viewport */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-sidebar .sidebar-inner {
+    /* Fill available height and allow the menu to scroll */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* prevent double scrollbars */
+  }
+
+  .site-sidebar .menu-list {
+    /* Allow the menu list to scroll independently */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    padding-right: 0.6rem; /* give some room for scroll bar */
+  }
+
+  /* Constrain the menu-list height so it doesn't overlap footer area inside sidebar */
+  .site-sidebar .menu-list {
+    max-height: calc(100vh - 6rem); /* leave space for social, footer, etc */
+  }
+}
+
+
+// // Base styles
+ html {
+     font-size: 70%; 
+ }
+
+body {
+    font-family: $font-sans; // Clean sans-serif for body
+    font-size: 1.6rem;
+    line-height: 1.7; // Improved line height for comfort
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+    background-color: $background-color;
+    font-weight: 300; // Light weight for minimalist feel
+    letter-spacing: 0.025em; // Subtle letter spacing for readability
+}
+
+// Mobile-specific base adjustments
+@media (max-width: 768px) {
+  html {
+    font-size: 58%; // Slightly smaller base for tablets
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 56%; // Even smaller for phones
+  }
+  
+  body {
+    font-size: 1.5rem;
+    line-height: 1.65;
+  }
+}
+
+// Container - Improved spacing and comfort
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2.4rem; // More generous padding
+}
+
+// Mobile container adjustments
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 1.6rem 2.5rem; // Less top, normal sides, more bottom
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem 1.2rem 2rem; // Minimal top padding on phones
+  }
+}
+
+// Navigation
+nav ul {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem; /* space between menu items */
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  font-family: $font-mono;
+  text-decoration: none;
+  color: $text-color;
+  font-weight: 400;
+  font-size: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+nav ul li a:hover {
+  color: $accent-color;
+  background: rgba(24, 255, 255, 0.08);
+}
+
+// Mobile navigation - stack vertically with better touch targets
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: stretch;
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 1.2rem 1.6rem;
+    font-size: 1.6rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul li a {
+    padding: 1rem 1.4rem;
+    font-size: 1.5rem;
+  }
+}
+
+// Breadcrumb - duplicate definition removed (using main one above)
+
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-mono; // Anonymous Pro for headings - technical feel
+    color: $primary-color; // Cyan
+    margin: 3.2rem 0 1.6rem; // More generous top margin
+    font-weight: 700;
+    letter-spacing: -0.02em; // Tight letter spacing for headings
+    line-height: 1.3; // Tighter line height for headings
+}
+
+h1 { 
+    font-size: 3.6rem; // Slightly larger
+    margin-top: 2rem; // Less top margin for h1
+    margin-bottom: 2.4rem; // More bottom margin
+}
+h2 { 
+    font-size: 2.8rem;
+    margin-top: 4rem; // More space before h2 sections
+}
+h3 { font-size: 2.2rem; }
+
+// Mobile typography adjustments
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.8rem;
+  }
+  h2 {
+    font-size: 2.4rem;
+    margin-top: 3rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.6rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.25;
+  }
+  h2 {
+    font-size: 2.2rem;
+    margin-top: 2.5rem;
+    line-height: 1.3;
+  }
+  h3 {
+    font-size: 1.9rem;
+    line-height: 1.35;
+  }
+  h4 {
+    font-size: 1.6rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+}
+
+// Articles and posts
+article {
+    margin-bottom: 3rem;
+    
+    header {
+        margin-bottom: 2rem;
+        
+        time {
+            color: #cccccc; // Light gray for date
+            font-size: 1.4rem;
+        }
+    }
+}
+
+// Mobile article spacing
+@media (max-width: 768px) {
+  article {
+    margin-bottom: 2.5rem;
+    padding: 0.5rem 0; // Reduced top padding
+    
+    header {
+      margin-bottom: 1.5rem;
+      
+      time {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  article {
+    margin-bottom: 2rem;
+    padding: 0 0 1.5rem 0; // No top padding, bottom only
+    
+    header {
+      margin-bottom: 1.2rem;
+    }
+  }
+}
+
+// Homepage post cards with featured images
+.post-card {
+    display: flex;
+    flex-direction: row-reverse; // Image on the right
+    gap: 2rem;
+    align-items: start; // Align tops
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    &:last-child {
+        border-bottom: none;
+    }
+    
+    h3 {
+        margin-top: 0; // Remove top margin from title
+        line-height: 1;
+    }
+}
+
+.featured-image {
+    flex-shrink: 0;
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+  // No border per request
+  box-sizing: border-box;
+    transition: all 0.3s ease;
+    
+  // Ensure the anchor fills the container so the image can truly cover
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden; // keep image corners clipped to radius
+  }
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+  &:hover {
+    box-shadow: 0 0 20px rgba(24, 255, 255, 0.3);
+    img { transform: scale(1.05); }
+  }
+}
+
+.post-content {
+    flex: 1;
+    min-width: 0;
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .post-card {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.8rem;
+    }
+    
+    .featured-image {
+    width: 100%;
+    height: clamp(180px, 35vw, 220px);
+    position: relative;
+    }
+    
+    .post-content h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-card {
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .featured-image {
+    height: clamp(160px, 45vw, 200px);
+        border-radius: 4px;
+    }
+    
+    .post-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .post-summary {
+        font-size: 1.3rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+/* Quick global: center top-level H1 inside .container (homepage title) */
+.container > h1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Tags
+.tags {
+    margin: 2rem 0;
+    
+    .tag {
+        font-family: $font-mono;
+        background: $surface-color;
+        border: 1px solid $border-color;
+        padding: 0.35rem 0.8rem; // More compact padding
+        border-radius: 4px; // Less rounded corners
+        font-size: 1.05rem; // Slightly smaller font
+        margin-right: 0.6rem; // Reduced margin
+        margin-bottom: 0.4rem;
+        text-decoration: none;
+        color: $secondary-text;
+        display: inline-flex; // Changed to inline-flex for better centering
+        align-items: center; // Center vertically
+        justify-content: center; // Center horizontally
+        line-height: 1.2; // Better line height for centering
+        transition: all 0.2s ease;
+        letter-spacing: 0.015em;
+        min-height: 2.2rem; // Ensure consistent height
+        
+        &:hover {
+            color: $accent-color;
+            border-color: $accent-color;
+            background: rgba(24, 255, 255, 0.05);
+        }
+    }
+}
+
+// Mobile tags adjustments
+@media (max-width: 768px) {
+  .tags {
+    margin: 1.5rem 0;
+    
+    .tag {
+      font-size: 1.05rem;
+      padding: 0.35rem 0.75rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      min-height: 2.1rem;
+    }
+  }
+  
+  .category-badge {
+    font-size: 1.05rem;
+    padding: 0.35rem 0.9rem;
+    min-height: 2.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tags {
+    margin: 1.2rem 0;
+    
+    .tag {
+      font-size: 1rem;
+      padding: 0.3rem 0.7rem;
+      min-height: 2rem;
+    }
+  }
+  
+  .category-badge {
+    font-size: 1rem;
+    padding: 0.4rem 0.9rem 0.4rem 0.9rem !important; /* More padding top, less bottom */
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
+  .category-badges {
+    gap: 0.5rem;
+  }
+}
+
+/* Category badges (same style as tags but slightly larger and fully pill-rounded) */
+.category-badges {
+  margin: 0.6rem 0 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center; /* Align items vertically */
+}
+
+.category-badge {
+  font-family: $font-mono;
+  background: $surface-color;
+  border: 1px solid $accent-color; /* Cyan border like original */
+  padding: 0.5rem 1rem; /* Balanced padding */
+  border-radius: 999px; /* pill / circle style */
+  font-size: 1.1rem; /* Smaller font size */
+  text-decoration: none;
+  color: $accent-color; /* Cyan text like original */
+  display: inline-flex; /* Changed to inline-flex for better centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  line-height: 1; /* Line height = 1 for perfect vertical centering */
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+  height: 2.6rem; /* Fixed height instead of min-height */
+  white-space: nowrap; /* Prevent text wrapping inside badges */
+}
+
+.category-badge:hover {
+  background: $accent-color; /* Filled cyan background on hover */
+  color: $background-color; /* Dark text on hover */
+  border-color: $accent-color;
+}
+
+/* Meta labels preceding badge groups */
+.meta-label {
+  font-family: $font-mono;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $secondary-text;
+  margin-right: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.75;
+  position: relative;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.meta-label:hover {
+  color: $accent-color;
+  opacity:1;
+}
+
+.meta-label::after {
+  content: '';
+  position: absolute;
+  bottom: -0.4rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: $accent-color;
+  transition: width 0.3s ease;
+}
+
+.category-badges:hover > .meta-label::after,
+.tags:hover > .meta-label::after { width: 100%; }
+
+/* Bottom tags (spacing tweak when at end of article) */
+.tags-bottom { margin-top: 1.2rem; }
+
+/* Tighten heading spacing when preceded by category badges */
+.category-badges + h1,
+.category-badges + h2,
+.category-badges + h3 {
+  margin-top: 1.2rem;
+}
+
+/* When category badges sit above tags (homepage), small separation */
+.category-badges + .tags-bottom { margin-top: 0.8rem; }
+
+/* More separation between summary text and meta badge cluster on listings */
+.post-summary + .category-badges { margin-top: 2.8rem; }
+.post-summary + .tags-bottom { margin-top: 2.8rem; }
+/* If both categories then tags, keep the small gap already defined between them */
+
+/* author styles removed */
+
+// Links
+a {
+    color: $accent-color; // Bright cyan
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        color: $primary-color;
+        text-decoration: underline;
+        text-decoration-color: rgba(24, 255, 255, 0.5);
+    }
+}
+
+/* Ensure inline links inside prose don't change line height or layout */
+.content p a,
+.content li a,
+article p a,
+article li a,
+.container p a {
+  display: inline;
+  min-height: 0;
+  line-height: inherit;
+  vertical-align: baseline;
+  padding: 0;
+  margin: 0;
+}
+
+/* Enhanced Text Formatting Styles */
+
+/* Bold text - stronger weight, same color as body text */
+strong, b {
+  font-weight: 700;
+  color: lighten($text-color, 5%); // Keep normal text color
+}
+
+/* Italic text - distinctive slant with subtle highlight */
+em, i {
+  font-style: italic;
+  color: lighten($text-color, 5%);
+  font-weight: 500;
+}
+
+/* Bold + Italic combination */
+strong em, em strong, b i, i b {
+  font-weight: 700;
+  font-style: italic;
+  color: $text-color;
+  text-shadow: 0 0 10px rgba(24, 255, 255, 0.4);
+}
+
+/* Underline (if using HTML <u> tag) */
+u {
+  text-decoration: underline;
+  text-decoration-color: $accent-color;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Mark/Highlight text */
+mark {
+  background: rgba(24, 255, 255, 0.15);
+  color: $primary-color;
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+/* Strikethrough */
+s, del {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 0, 0, 0.6);
+  text-decoration-thickness: 2px;
+  opacity: 0.7;
+}
+
+/* Keyboard keys */
+kbd {
+  background: rgba(24, 255, 255, 0.1);
+  border: 1px solid $accent-color;
+  border-radius: 3px;
+  padding: 0.2em 0.5em;
+  font-family: $font-mono;
+  font-size: 0.9em;
+  color: $accent-color;
+  box-shadow: 0 2px 0 rgba(24, 255, 255, 0.2);
+}
+
+/* Small text */
+small {
+  font-size: 0.85em;
+  color: lighten($text-color, 5%);
+}
+
+/* Subscript and superscript */
+sub, sup {
+  font-size: 0.75em;
+  line-height: 0;
+  color: $accent-color;
+}
+
+/* Abbreviations */
+abbr[title] {
+  text-decoration: underline dotted;
+  text-decoration-color: $accent-color;
+  cursor: help;
+}
+
+.figure {
+  margin: 0; /* remove all default margins */
+  display: block;
+  max-width: 100%;
+  border: none !important;
+  outline: none !important;
+  background: transparent; /* avoid subtle contrast lines */
+}
+
+.figure:not(.figure-left):not(.figure-right) {
+  margin-bottom: 2rem; /* only add bottom margin for non-floated figures */
+}
+
+.figure-center {
+  /* center figure by using auto margins when figure has an explicit width */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure-left {
+  float: left;
+  margin-right: 2rem;
+  margin-bottom: 1.5rem; /* Equal to margin-right */
+  margin-top: 0; /* Align with first line of text */
+  
+  /* Ensure terminal-figure respects these margins */
+  &:has(.terminal-figure-container) {
+    margin-right: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+.figure-right {
+  float: right;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem; /* Equal to margin-left */
+  margin-top: 0; /* Align with first line of text */
+  
+  /* Ensure terminal-figure respects these margins */
+  &:has(.terminal-figure-container) {
+    margin-left: 2rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Utility: force the next element to clear any floats above it */
+.clear-below {
+  clear: both;
+  display: block;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Strong stop: ensure all following siblings start below floats
+   Place <div class="stop-wrap"></div> where you want wrapping to stop.
+   We use a general sibling selector to apply clear: both to the next sibling
+   and to ensure the rule wins we use !important for the clear property. */
+.stop-wrap + * {
+  clear: both !important;
+}
+
+/* Utility class to mark elements that should never sit beside floats */
+.stop-wrap-target {
+  clear: both !important;
+}
+
+.figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none; // remove thin image border
+  border-radius: 4px;
+  max-width: 100%; // Ensure images don't overflow
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  color: #666;
+  text-align: center; // always center caption under image
+}
+
+// Mobile image adjustments
+@media (max-width: 480px) {
+  .figure {
+    width: 100%;
+    overflow-x: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .figure img {
+    border-radius: 6px;
+    width: 250%; // Make it 2.5x the container width
+    max-width: 250%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+  
+  .caption {
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+  }
+}
+
+/* Clear floats in content sections */
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Automatic clearing: ensure that block-level elements following a NON-FLOATED figure start below it.
+   For floated figures (.figure-left, .figure-right), we want text to wrap, so don't clear.
+   This targets common top-level blocks (headings, .note, .post-summary, etc.)
+   and only applies on wider viewports where floats are used. */
+@media (min-width: 601px) {
+  /* Only clear for centered/non-floated figures */
+  .figure:not(.figure-left):not(.figure-right) + h1,
+  .figure:not(.figure-left):not(.figure-right) + h2,
+  .figure:not(.figure-left):not(.figure-right) + h3,
+  .figure:not(.figure-left):not(.figure-right) + h4,
+  .figure:not(.figure-left):not(.figure-right) + h5,
+  .figure:not(.figure-left):not(.figure-right) + h6 {
+    clear: both;
+  }
+  
+  /* Allow paragraphs to wrap around floated figures */
+  /* Remove the automatic clear: both for paragraphs after floated figures */
+}
+
+.post-summary {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: rgba(215,255,215,0.95); /* soft green-ish */
+  font-size: 1.4rem;
+  font-style: italic;
+  font-family: 'Courier New', monospace;
+  line-height: 1.5;
+  background: rgba(255,255,255,0.02);
+  padding: 0.8rem 1rem;
+  border-left: 3px solid $accent-color;
+  border-radius: 4px;
+  word-break: break-word;
+  /* visually clamp to a few lines so long summaries don't dominate the homepage */
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive: stack floated figures on small screens */
+@media (max-width: 600px) {
+  .figure-left, .figure-right {
+    float: none;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .post-summary { line-clamp: 3; -webkit-line-clamp: 3; }
+}
+
+.site-footer {
+  background: $surface-color;
+  color: $secondary-text;
+  padding: 4rem 0 3rem;
+  margin-top: 6rem; // More separation
+  border-top: 1px solid $border-color;
+  font-size: 1.3rem;
+  font-family: $font-mono;
+  letter-spacing: 0.02em;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-footer .footer-meta {
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+.site-footer .social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.4rem;
+}
+
+.site-footer .social-links a {
+  color: $accent-color;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.site-footer .social-links .icon i { font-size: 1.6rem; }
+
+.site-footer .footer-built {
+  color: rgba(255,255,255,0.6);
+  margin: 0.2rem 0 0;
+  font-size: 1.2rem;
+}
+
+.site-footer .footer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.site-footer .footer-recaptcha {
+  margin: 1.5rem 0 0 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  text-align: center;
+  color: $secondary-text;
+  line-height: 1.5;
+  
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .site-footer .container { flex-direction: column; align-items: center; }
+  .site-footer .footer-main { flex-direction: row; justify-content: space-between; align-items: center; }
+  .site-footer .footer-built { margin: 0; }
+  .site-footer .footer-recaptcha { margin-top: 1rem; }
+}
+
+// Mobile footer adjustments
+@media (max-width: 699px) {
+  .site-footer {
+    padding: 2rem 0 1.5rem;
+    margin-top: 3rem;
+    font-size: 1.1rem;
+  }
+  
+  .site-footer .container {
+    gap: 1.2rem;
+    text-align: center;
+  }
+  
+  .site-footer .social-links {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .site-footer .footer-meta,
+  .site-footer .footer-built {
+    font-size: 1rem;
+  }
+  
+  .site-footer .footer-recaptcha {
+    font-size: 0.8rem;
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 1.5rem 0 1rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+  
+  .site-footer .container {
+    gap: 1rem;
+  }
+  
+  .site-footer .social-links {
+    gap: 1rem;
+  }
+  
+  .site-footer .social-links a {
+    padding: 0.5rem;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  .site-footer .social-links .icon i {
+    font-size: 1.4rem;
+  }
+  
+  .site-footer .footer-meta,
+  .site-footer .footer-built {
+    font-size: 0.95rem;
+  }
+  
+  .site-footer .footer-recaptcha {
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Make the breadcrumb content align with the main .container on wide screens */
+@media (min-width: 700px) {
+  .breadcrumb {
+    max-width: 900px; /* same as .page-main .container */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2.4rem; /* match container padding so text aligns */
+    padding-right: 2.4rem;
+    justify-content: center; /* Keep centered on desktop too */
+  }
+}
+
+/* Left sticky sidebar layout */
+.page-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.site-sidebar {
+  width: 280px;
+  background: $surface-color;
+  border-right: 1px solid $border-color;
+  color: $text-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 250; /* Higher than toggle button (200) so links are clickable */
+  transform: translateX(-100%); /* default hidden to avoid flash */
+}
+
+html.sidebar-expanded .site-sidebar { transform: translateX(0); }
+html.sidebar-collapsed .site-sidebar { transform: translateX(-100%); }
+
+/* Adjust main content offset only when expanded (desktop) */
+html.sidebar-expanded .page-main { margin-left: 280px; }
+html.sidebar-collapsed .page-main { margin-left: 0; }
+
+.site-sidebar .sidebar-inner {
+  padding: 3.2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .site-sidebar .sidebar-inner {
+    padding: 2rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-sidebar .sidebar-inner {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3.2rem 0; // More space before socials
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem; // Tighter spacing
+}
+
+.menu-list a {
+  font-family: $font-mono;
+  color: $text-color;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: inline-block;
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.menu-list a:hover {
+  color: $accent-color;
+  background: rgba(24, 255, 255, 0.08);
+}
+
+.sidebar-social {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sidebar-social a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.4rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.sidebar-social a:hover {
+  color: $accent-color;
+  background: rgba(0,255,0,0.08);
+  transform: translateY(-1px);
+}
+
+.social-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: currentColor;
+  transition: fill 0.2s ease;
+  display: block;
+  flex-shrink: 0;
+}
+
+.social-icon-img {
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
+/* Add a subtle glow effect on hover for terminal aesthetic */
+.sidebar-social a:hover .social-icon {
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* Button Styles - Terminal Theme */
+.btn {
+  display: inline-flex; // Changed to inline-flex for better centering
+  align-items: center; // Center vertically
+  justify-content: center; // Center horizontally
+  padding: 0.5rem 1rem; // Even more compact padding
+  font-family: $font-mono;
+  font-size: 1.1rem; // Smaller font
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  border: 1.5px solid; // Thinner border
+  border-radius: 3px; // Less rounded
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.2; // Better line height for centering
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.015em;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,255,0,0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,255,0,0.1);
+}
+
+/* Default button - cyan minimalist style */
+.btn-default {
+  color: $accent-color;
+  background: transparent;
+  border-color: $accent-color;
+}
+
+.btn-default:hover {
+  color: $background-color;
+  background: $accent-color;
+  border-color: $accent-color;
+  box-shadow: 0 0 10px rgba(24, 255, 255, 0.3);
+}
+
+/* Primary button - filled cyan */
+.btn-primary {
+  color: $background-color;
+  background: $accent-color;
+  border-color: $accent-color;
+}
+
+.btn-primary:hover {
+  color: $background-color;
+  background: lighten($accent-color, 10%);
+  border-color: lighten($accent-color, 10%);
+  box-shadow: 0 0 15px rgba(24, 255, 255, 0.4);
+}
+
+/* Danger button - red for destructive actions */
+.btn-danger {
+  color: #ff4444;
+  background: transparent;
+  border-color: #ff4444;
+}
+
+.btn-danger:hover {
+  color: $background-color;
+  background: #ff4444;
+  border-color: #ff4444;
+  box-shadow: 0 0 10px rgba(255,68,68,0.3);
+}
+
+/* Secondary button - white/gray */
+.btn-secondary {
+  color: rgba(255,255,255,0.8);
+  background: transparent;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.btn-secondary:hover {
+  color: $background-color;
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* Button sizes */
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+}
+
+.btn-large {
+  padding: 0.7rem 1.4rem;
+  font-size: 1.3rem;
+}
+
+/* Button groups */
+.btn-group {
+  display: inline-flex;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+/* Center button wrapper */
+.btn-center {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+/* Responsive button behavior */
+@media (max-width: 600px) {
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 1.2rem 2rem; // Larger touch target
+    font-size: 1.4rem;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-small {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.3rem;
+  }
+  
+  .btn-large {
+    padding: 1.4rem 2.4rem;
+    font-size: 1.7rem;
+  }
+}
+
+.page-main {
+  flex: 1 1 auto;
+  min-width: 0; /* allow proper truncation/flex behavior */
+  margin-left: 280px; // Account for fixed sidebar width
+}
+
+/* Ensure the main container has left padding on wide screens so content doesn't go under the sidebar */
+@media (min-width: 700px) {
+  .page-main .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3.2rem; // More generous padding on desktop
+  }
+}
+
+/* On mobile, sidebar is overlay - no need to change page-shell */
+@media (max-width: 699px) {
+  .page-shell { 
+    display: block; /* Change from flex to block */
+  }
+  
+  .page-main { 
+    margin-left: 0 !important; // Remove left margin on mobile
+    padding-top: 6rem; // Add space for toggle button at top
+  }
+  
+  .page-main .container { 
+    margin: 0; 
+    padding: 1.6rem 1.6rem 3rem; // Reduce top, normal sides, more bottom
+  }
+}
+
+/* Note Shortcode Styles - Minimalist Theme */
+.note {
+  font-family: $font-sans;
+  margin: 2.4rem 0;
+  border-radius: 4px;
+  padding: 1.5rem 1.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid;
+  transition: all 0.2s ease;
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  font-family: $font-mono;
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.note-content {
+  padding-left: 2.2rem; // Align with text after icon
+  
+  p:first-child {
+    margin-top: 0;
+  }
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Mobile note adjustments
+@media (max-width: 768px) {
+  .note {
+    margin: 1.8rem 0;
+    padding: 1.2rem 1.4rem;
+    border-radius: 3px;
+  }
+  
+  .note-header {
+    font-size: 1.2rem;
+  }
+  
+  .note-content {
+    padding-left: 1.8rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .note {
+    margin: 1.5rem -1.2rem; // Extend to edges
+    padding: 1rem 1.2rem;
+    border-radius: 0;
+  }
+  
+  .note-content {
+    padding-left: 0;
+  }
+}
+
+.note-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.note-title {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+
+/* Note type variations - Subtle colors */
+.note-info,
+.note-information {
+  border-left-color: rgba(100, 200, 255, 0.5);
+  
+  .note-header {
+    color: rgba(100, 200, 255, 0.9);
+  }
+  
+  .note-content {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* Category badges (larger than tags) - duplicate removed, using styles above */
+
+/* Tags bottom spacing */
+.tags-bottom { margin-top: 2.4rem; }
+
+/* Harmonize tag styling to pill if desired later; existing kept */
+
+.note-warning {
+  border-left-color: rgba(255, 180, 50, 0.6);
+  
+  .note-header {
+    color: rgba(255, 180, 50, 0.9);
+  }
+  
+  .note-content {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.note-success,
+.note-tip {
+  border-left-color: rgba(100, 220, 150, 0.6);
+  
+  .note-header {
+    color: rgba(100, 220, 150, 0.9);
+  }
+  
+  .note-content {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.note-error,
+.note-danger {
+  border-left-color: rgba(255, 100, 100, 0.6);
+  
+  .note-header {
+    color: rgba(255, 100, 100, 0.9);
+  }
+  
+  .note-content {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* === Ordering overrides: title -> categories -> tags -> date -> summary === */
+article h1 + .category-badges, article h1 + .tags,
+article h2 + .category-badges, article h2 + .tags,
+article h3 + .category-badges, article h3 + .tags { margin-top: 0.8rem; }
+
+.category-badges + .tags { margin-top: 0.4rem; }
+.tags + time, .category-badges + time { display:block; margin-top: 0.8rem; }
+
+/* If summary directly follows time keep prior spacing */
+time + .post-summary { margin-top: 1.2rem; }
+
+/* Reduce old bottom margin on .category-badges when first after title */
+article h2 + .category-badges { margin-bottom: 0.6rem; }
+/* Single header: ensure a consistent margin above date when following tag cluster */
+.tags-inline + time { margin-top: 1rem; display:block; }
+
+.meta-label, .meta-label:visited, .meta-label:hover, .meta-label:focus, .meta-label:active,
+.category-badge, .category-badge:visited, .category-badge:hover, .category-badge:focus, .category-badge:active,
+.tag, .tag:visited, .tag:hover, .tag:focus, .tag:active { text-decoration: none !important; }
+
+/* Copyable code blocks */
+.code-block { position:relative; background:#0f1115; border:1px solid #21262d; border-radius:8px; padding:0; margin:2rem 0; }
+.code-block pre { margin:0; padding:1.1rem 1.2rem 1.2rem 1.2rem; background:transparent; border:none; }
+.code-block [data-lang]:before { content:attr(data-lang); position:absolute; top:0; left:0; font-size:.85rem; letter-spacing:.1em; padding:.38rem .75rem .42rem; background:#1d232a; color:#92a9b8; border-bottom-right-radius:7px; font-family:$font-mono; text-transform:uppercase; font-weight:600; }
+.copy-button { position:absolute; top:.45rem; right:.55rem; background:#1d232a; color:#c5d3da; border:1px solid #2a3139; font-size:.85rem; padding:.48rem .85rem .5rem; border-radius:6px; cursor:pointer; display:flex; align-items:center; gap:.5rem; line-height:1; font-family:$font-mono; font-weight:500; letter-spacing:.05em; transition: background .18s, color .18s, border-color .18s, transform .15s, box-shadow .2s; box-shadow:0 0 0 1px rgba(0,0,0,.4); }
+.copy-button:hover { background:#25303a; color:#d6e3e9; }
+.copy-button:active { transform:scale(.94); }
+.copy-button.copied { background:#073642; color:#18ffff; border-color:#18ffff; box-shadow:0 0 0 1px #18ffff, 0 0 6px #18ffff66; }
+.copy-button .copy-label { pointer-events:none; }
+
+.chroma, pre.chroma, .highlight {
+  overflow-x: auto;
+  white-space: pre;            /* do not wrap */
+  -webkit-overflow-scrolling: touch;
+}
+.chroma code, pre code {
+  white-space: pre;            /* ensure code doesn't wrap */
+}
+
+/* Gallery Grid Styles */
+.gallery {
+  display: grid;
+  gap: var(--gallery-gap, 1rem);
+  margin: 2.4rem 0;
+  width: 100%;
+  
+  &[data-columns="2"] { grid-template-columns: repeat(2, 1fr); }
+  &[data-columns="3"] { grid-template-columns: repeat(3, 1fr); }
+  &[data-columns="4"] { grid-template-columns: repeat(4, 1fr); }
+  &[data-columns="5"] { grid-template-columns: repeat(5, 1fr); }
+  
+  @media (max-width: 768px) {
+    margin: 1.8rem 0;
+    gap: 0.8rem;
+    
+    &[data-columns="3"], &[data-columns="4"], &[data-columns="5"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr !important;
+    margin: 1.5rem 0;
+    gap: 0.6rem;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $accent-color;
+    box-shadow: 0 0 12px rgba(24, 255, 255, 0.3);
+    transform: translateY(-2px);
+    
+    .gallery-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.gallery-link {
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  &:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+  }
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 17, 23, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-icon {
+  font-size: 3rem;
+  color: $accent-color;
+  font-family: $font-mono;
+  text-shadow: 0 0 10px rgba(24, 255, 255, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.gallery-item-caption {
+  padding: 0.8rem;
+  font-size: 0.85rem;
+  font-family: $font-mono;
+  color: $secondary-text;
+  text-align: center;
+  background: rgba(22, 27, 34, 0.8);
+  border-top: 1px solid $border-color;
+}
+
+.gallery-caption {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: $font-mono;
+  color: $text-color;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(22, 27, 34, 0.5);
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+/* Lightbox Styles */
+#lightbox {
+  display: none; /* Will change to flex when opened */
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0; /* Explicitly set right edge */
+  bottom: 0; /* Explicitly set bottom edge */
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
+  background-color: rgba(0, 0, 0, 0.95);
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column;
+  padding: 0; /* Remove padding that might cause offset */
+  margin: 0; /* Ensure no margin */
+  overflow: hidden; /* Hide scrollbar if any */
+}
+
+.lightbox-content {
+  max-width: 85vw; /* Use viewport units for consistency */
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(24, 255, 255, 0.3);
+  animation: lightboxZoom 0.3s ease;
+  display: block;
+  margin: 0; /* Remove margin - let flexbox handle centering */
+  position: relative; /* Ensure proper positioning */
+}
+
+@keyframes lightboxZoom {
+  from {
+    transform: scale(0.8) translateY(0); /* Remove any offset */
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  color: $accent-color;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10000;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+  background: rgba(13, 17, 23, 0.9);
+  border-radius: 4px;
+  border: 1px solid $accent-color;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    color: $primary-color;
+    background: rgba(24, 255, 255, 0.1);
+    border-color: $primary-color;
+    box-shadow: 0 0 15px rgba(24, 255, 255, 0.4);
+  }
+}
+
+.lightbox-caption {
+  color: $text-color;
+  font-family: $font-sans;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  max-width: 80%;
+  padding: 0.75rem 1.5rem;
+  background: rgba(13, 17, 23, 0.8);
+  border-radius: 4px;
+  border: 1px solid rgba(24, 255, 255, 0.3);
+  position: relative; /* Ensure it doesn't affect image positioning */
+  align-self: center; /* Center caption within flex container */
+}
+
+/* Add pointer cursor to images */
+.content img,
+.gallery-item img {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(24, 255, 255, 0.3);
+  }
+}
+
+/* Mobile responsive lightbox */
+@media (max-width: 768px) {
+  .lightbox-content {
+    max-width: 95%;
+    max-height: 80vh;
+  }
+  
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.3rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .lightbox-caption {
+    font-size: 0.9rem;
+    max-width: 90%;
+    margin-top: 1rem;
+  }
+}
+
+/* Terminal Figure Gallery-like Styles */
+.figure {
+  /* Equal spacing for terminal-figure (only for centered figures) */
+  &:not(.figure-left):not(.figure-right):has(.terminal-figure-container) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .terminal-figure-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    // Hard-disable any border/outline/shadow visuals
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      // keep clean — no glow/border on hover
+      box-shadow: none !important;
+      
+      .terminal-figure-overlay {
+        opacity: 1;
+      }
+      
+      .terminal-figure-img {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .terminal-figure-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: transform 0.3s ease;
+  }
+  
+  .terminal-figure-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .terminal-figure-icon {
+    color: $accent-color;
+    font-size: 3rem;
+    font-weight: bold;
+    animation: terminalPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes terminalPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+  
+  // Progressive scaling: as viewport gets smaller, terminal-figure gets bigger
+  // Maximum size on phones, gradually smaller on larger screens
+  
+
+  
+  // Phone (≤480px): Maximum size
+  @media (max-width: 480px) {
+    .container .figure-left:has(.terminal-figure-container),
+    .container .figure-center:has(.terminal-figure-container),
+    .container .figure-right:has(.terminal-figure-container),
+    .container .figure:has(.terminal-figure-container) {
+      margin-left: -1.2rem !important;
+      margin-right: -1.2rem !important;
+    }
+    
+    .terminal-figure-container {
+      width: 90vw !important; // Maximum size
+      max-width: 90vw !important;
+      margin: 0 !important;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .terminal-figure-img {
+      width: 100% !important;
+      display: block !important;
+    }
+  }
+}
+
+/* Typewriter Effect for Homepage Greeting */
+#typewriter-greeting {
+  min-height: 1.2em; /* Prevent layout shift while typing */
+  
+  .typewriter-cursor {
+    color: $accent-color;
+    font-weight: normal;
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 2px;
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+// Mobile enhancements
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  // Keep inline links inline to avoid sentence gaps in paragraphs
+  .content a,
+  .post-content a,
+  .container p a,
+  article p a {
+    display: inline;
+    min-height: 0;
+    line-height: inherit;
+  }
+
+  // Only enlarge tap targets for navigation and UI buttons
+  nav a,
+  .menu-list a,
+  .sidebar a,
+  .btn,
+  .btn a,
+  .breadcrumb a,
+  .site-footer a,
+  header a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  // Ensure videos and iframes are responsive
+  iframe,
+  video,
+  embed {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Very small phones - additional adjustments
+@media (max-width: 360px) {
+  body {
+    font-size: 1.3rem;
+    zoom: 1;
+  }
+  
+  .container {
+    padding: 1.2rem 1rem;
+  }
+  
+  // Reduce spacing for very small screens
+  h1 {
+    font-size: 2.4rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+  }
+}
+
+// Improve tap targets on all touch devices
+@media (hover: none) and (pointer: coarse) {
+  // This targets touch devices specifically
+  button,
+  a,
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  // Prevent text selection issues on touch
+  * {
+    -webkit-tap-highlight-color: rgba(24, 255, 255, 0.1);
+  }
+}
+
+/* Hide reCAPTCHA badge (only if you display alternative notice) */
+/* Google's Terms require you to display a notice if hiding the badge */
+.grecaptcha-badge {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Visitor Counter in Sidebar */
+.visitor-counter {
+  margin-top: auto;
+  margin-bottom: 4rem;
+  padding: 1.2rem 1rem;
+  color: $accent-color;
+  font-size: 1rem;
+  text-align: center;
+  font-family: $font-mono;
+  border-top: 1px solid $border-color;
+  
+  .visitor-label {
+    color: $accent-color;
+    font-size: 1.3rem;
+  }
+  
+  .visitor-count {
+    color: $accent-color;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 768px) {
+  .visitor-counter {
+    margin-bottom: 3rem;
+    font-size: 1rem;
+    padding: 1rem;
+    
+    .visitor-label {
+      font-size: 1.5rem;
+    }
+    
+    .visitor-count {
+      font-size: 1.5rem;
+    }
+  }
+}

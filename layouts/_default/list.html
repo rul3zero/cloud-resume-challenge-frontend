@@ -1,0 +1,43 @@
+{{ define "main" }}
+<nav class = "breadcrumb">
+    <a href="/">Home</a>
+    {{ if ne .Kind "home" }}
+    <span> → </span>
+    <a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a>
+    {{ end }}
+</nav>
+
+<main class="container">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    
+    <section class="page-list">
+        {{ range .RegularPages }}
+            <article>
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                                                {{ with .Params.categories }}
+                                                    <div class="category-badges">
+                                                        <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+                                                        {{ range . }}
+                                                            <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                                                {{ with .Params.tags }}
+                                                    <div class="tags tags-bottom">
+                                                        <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+                                                        {{ range . }}
+                                                            <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+                                                        {{ end }}
+                                                    </div>
+                                                {{ end }}
+                {{/* author removed */}}
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                {{ if .Summary }}
+                    <p>{{ .Summary }}</p>
+                {{ end }}
+            </article>
+        {{ end }}
+    </section>
+</main>
+{{ end }}

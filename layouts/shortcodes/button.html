@@ -1,0 +1,27 @@
+{{/*
+  Button shortcode for terminal-themed buttons
+  Usage: {{< button href="/path" text="Click Me" >}}
+  Usage: {{< button href="https://example.com" text="External Link" external="true" >}}
+  Usage: {{< button href="/download" text="Download" style="primary" >}}
+  Usage: {{< button href="/danger" text="Delete" style="danger" >}}
+  Usage: {{< button href="/path" text="Centered" center="true" >}}
+*/}}
+
+{{ $href := .Get "href" }}
+{{ $text := .Get "text" }}
+{{ $external := .Get "external" }}
+{{ $center := .Get "center" }}
+{{ $style := .Get "style" | default "default" }}
+{{ $class := printf "btn btn-%s" $style }}
+
+{{ if $center }}
+<div class="btn-center">
+{{ end }}
+  {{ if $external }}
+    <a href="{{ $href }}" class="{{ $class }}" target="_blank" rel="noopener noreferrer">{{ $text }}</a>
+  {{ else }}
+    <a href="{{ $href }}" class="{{ $class }}">{{ $text }}</a>
+  {{ end }}
+{{ if $center }}
+</div>
+{{ end }}

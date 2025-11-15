@@ -1,0 +1,35 @@
+{{/*
+  Note shortcode - Minimalist cyan-themed callout boxes
+  Usage: {{< note type="info" title="Note Title" >}}Content here{{< /note >}}
+  Types: info, warning, success, error, tip
+  Title is optional
+*/}}
+
+{{ $type := .Get "type" | default "info" }}
+{{ $title := .Get "title" }}
+{{ $content := .Inner | markdownify }}
+
+{{ $iconMap := dict 
+  "info" "ℹ" 
+  "information" "ℹ"
+  "warning" "⚠" 
+  "success" "✓" 
+  "error" "✗" 
+  "tip" "💡"
+}}
+
+{{ $icon := index $iconMap $type | default "ℹ" }}
+
+<div class="note note-{{ $type }}">
+  <div class="note-header">
+    <span class="note-icon">{{ $icon }}</span>
+    {{ if $title }}
+      <span class="note-title">{{ $title }}</span>
+    {{ else }}
+      <span class="note-title">{{ $type | title }}</span>
+    {{ end }}
+  </div>
+  <div class="note-content">
+    {{ $content }}
+  </div>
+</div>

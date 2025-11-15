@@ -1,0 +1,459 @@
+{{ define "main" }}
+<main class="container error-404">
+    <div class="error-404-content">
+        <div class="glitch-wrapper">
+            <h1 class="glitch" data-text="404">404</h1>
+        </div>
+        <h2 class="error-subtitle">
+            <span class="typewriter" data-text="PAGE NOT FOUND"></span>
+        </h2>
+        <p class="error-message">
+            The page you're looking for has been moved, deleted, or possibly never existed.
+        </p>
+        
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span class="terminal-title">error.log</span>
+                <span class="terminal-controls">
+                    <span class="control-dot"></span>
+                    <span class="control-dot"></span>
+                    <span class="control-dot"></span>
+                </span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="prompt">$</span>
+                    <span class="command">curl {{ .Site.BaseURL }}{{ .RelPermalink }}</span>
+                </div>
+                <div class="terminal-line error">
+                    <span class="output">HTTP/1.1 404 Not Found</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="output">Content-Type: text/html; charset=utf-8</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="output">X-Error: Resource does not exist</span>
+                </div>
+                <div class="terminal-line blinking-cursor">
+                    <span class="prompt">$</span>
+                    <span class="cursor">_</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <span class="btn-icon">←</span> Back to Home
+            </a>
+            <a href="/blog" class="btn btn-secondary">Browse Blog</a>
+            <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
+        </div>
+        
+        <div class="quick-search">
+            <h3>Maybe you're looking for:</h3>
+            <ul class="popular-links">
+                {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</main>
+
+<style>
+.error-404 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.error-404-content {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glitch effect for 404 */
+.glitch-wrapper {
+    margin: 2rem 0;
+}
+
+.glitch {
+    font-size: 8rem;
+    font-weight: 700;
+    font-family: 'Anonymous Pro', monospace;
+    color: {{ .Site.Params.primaryColor | default "#00e5ff" }};
+    position: relative;
+    margin: 0;
+    animation: glitch-skew 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00de;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00de;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 94px, 0); }
+    10% { clip: rect(85px, 9999px, 40px, 0); }
+    20% { clip: rect(48px, 9999px, 17px, 0); }
+    30% { clip: rect(31px, 9999px, 149px, 0); }
+    40% { clip: rect(28px, 9999px, 82px, 0); }
+    50% { clip: rect(126px, 9999px, 61px, 0); }
+    60% { clip: rect(91px, 9999px, 100px, 0); }
+    70% { clip: rect(65px, 9999px, 24px, 0); }
+    80% { clip: rect(119px, 9999px, 96px, 0); }
+    90% { clip: rect(73px, 9999px, 138px, 0); }
+    100% { clip: rect(42px, 9999px, 11px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 119px, 0); }
+    10% { clip: rect(52px, 9999px, 55px, 0); }
+    20% { clip: rect(79px, 9999px, 20px, 0); }
+    30% { clip: rect(96px, 9999px, 143px, 0); }
+    40% { clip: rect(9px, 9999px, 68px, 0); }
+    50% { clip: rect(121px, 9999px, 105px, 0); }
+    60% { clip: rect(47px, 9999px, 15px, 0); }
+    70% { clip: rect(33px, 9999px, 134px, 0); }
+    80% { clip: rect(104px, 9999px, 72px, 0); }
+    90% { clip: rect(18px, 9999px, 88px, 0); }
+    100% { clip: rect(61px, 9999px, 45px, 0); }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(0deg); }
+    10% { transform: skew(1deg); }
+    20% { transform: skew(-1deg); }
+    30% { transform: skew(2deg); }
+    40% { transform: skew(-0.5deg); }
+    50% { transform: skew(0deg); }
+    60% { transform: skew(0.5deg); }
+    70% { transform: skew(-2deg); }
+    80% { transform: skew(1deg); }
+    90% { transform: skew(0deg); }
+    100% { transform: skew(0deg); }
+}
+
+/* Subtitle with typewriter effect */
+.error-subtitle {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 2rem;
+    color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    margin: 1rem 0 2rem;
+    letter-spacing: 0.1em;
+}
+
+.typewriter::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.error-message {
+    font-size: 1.2rem;
+    color: #78909c;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Terminal box */
+.terminal-box {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    margin: 3rem auto;
+    max-width: 600px;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #21262d;
+}
+
+.terminal-title {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 0.9rem;
+    color: #78909c;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #30363d;
+}
+
+.control-dot:nth-child(1) { background: #ff5f56; }
+.control-dot:nth-child(2) { background: #ffbd2e; }
+.control-dot:nth-child(3) { background: #27c93f; }
+
+.terminal-body {
+    padding: 1.5rem;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+}
+
+.prompt {
+    color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    margin-right: 0.5rem;
+}
+
+.command {
+    color: #b0bec5;
+}
+
+.output {
+    color: #78909c;
+}
+
+.terminal-line.error .output {
+    color: #ff5f56;
+    font-weight: 700;
+}
+
+.blinking-cursor {
+    animation: blink-line 1s infinite;
+}
+
+.cursor {
+    color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    font-weight: 700;
+}
+
+@keyframes blink-line {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.4; }
+}
+
+/* Action buttons */
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid;
+}
+
+.btn-primary {
+    background: {{ .Site.Params.primaryColor | default "#00e5ff" }};
+    color: #0d1117;
+    border-color: {{ .Site.Params.primaryColor | default "#00e5ff" }};
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: {{ .Site.Params.primaryColor | default "#00e5ff" }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 229, 255, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #b0bec5;
+    border-color: #30363d;
+}
+
+.btn-secondary:hover {
+    border-color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/* Quick search section */
+.quick-search {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #21262d;
+}
+
+.quick-search h3 {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 1.2rem;
+    color: #b0bec5;
+    margin-bottom: 1.5rem;
+}
+
+.popular-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.popular-links li {
+    text-align: left;
+}
+
+.popular-links a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #78909c;
+    text-decoration: none;
+    border: 1px solid #21262d;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: 'Anonymous Pro', monospace;
+}
+
+.popular-links a:hover {
+    color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    border-color: {{ .Site.Params.accentColor | default "#18ffff" }};
+    background: rgba(24, 255, 255, 0.05);
+    transform: translateX(8px);
+}
+
+.popular-links a::before {
+    content: '→ ';
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popular-links a:hover::before {
+    opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .error-404 {
+        padding: 2rem 1rem;
+    }
+    
+    .glitch {
+        font-size: 5rem;
+    }
+    
+    .error-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .terminal-box {
+        margin: 2rem 0;
+    }
+    
+    .terminal-body {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch {
+        font-size: 4rem;
+    }
+    
+    .error-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .error-message {
+        font-size: 1rem;
+    }
+    
+    .terminal-body {
+        font-size: 0.75rem;
+    }
+}
+</style>
+
+<script>
+// Simple typewriter effect for the subtitle
+document.addEventListener('DOMContentLoaded', function() {
+    const typewriterEl = document.querySelector('.typewriter');
+    if (typewriterEl) {
+        const text = typewriterEl.dataset.text || 'PAGE NOT FOUND';
+        typewriterEl.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterEl.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+    }
+});
+</script>
+{{ end }}

@@ -1,0 +1,45 @@
+{{ define "main" }}
+<nav class="breadcrumb">
+  <a href="/">Home</a>
+  <span>→</span>
+  <a href="/tags/">Tags</a>
+  <span>→</span>
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</nav>
+
+<main class="container">
+  <header>
+    <h1>Posts Tagged: "{{ .Title }}"</h1>
+    {{ with .Description }}
+      <p>{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <section class="tag-post-list">
+    {{ range .Pages }}
+      <article>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Params.categories }}
+          <div class="category-badges">
+            <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+            {{ range . }}
+              <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+        {{ with .Params.tags }}
+          <div class="tags tags-bottom">
+            <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+            {{ range . }}
+              <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      </article>
+    {{ else }}
+      <p>No posts found for this tag.</p>
+    {{ end }}
+  </section>
+</main>
+{{ end }}
