@@ -1,6 +1,8 @@
 baseURL = "https://joshcarl.dev/"
 languageCode = "en-us"
 title = "Josh Carl"
+canonifyURLs = true
+relativeURLs = false
 
 [markup.goldmark.renderer]
 unsafe = true
