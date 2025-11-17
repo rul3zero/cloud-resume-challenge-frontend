@@ -4,7 +4,7 @@ date: 2025-10-24
 tags: ["Calibre", "SSH", "Azure VM", "Azure NSG", "AWS Route 53", "Certbot", "HTTPS", "Apache","Web", "Ubuntu"]
 categories: ["Cloud","AWS", "Azure", "Networking", "Linux"]
 description: "Building a secure, scalable e-library with Calibre-Web on Azure VM and DNS routing via AWS Route53."  
-featured_image: "images/calibre-web.jpg"
+featured_image: "/images/calibre-web.jpg"
 draft: false
 show: default
 ---

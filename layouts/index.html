@@ -4,7 +4,7 @@
     {{ .Content }}
     
     <section class="recent-posts">
-        <h2><a href="/portfolio/">Portfolio</a></h2>
+        <h2><a href="/portfolio/">Featured Posts</a></h2>
                 {{/* Get all portfolio items and filter by show status */}}
                 {{ $all := where .Site.RegularPages "Section" "portfolio" }}
                 {{ $important := where $all "Params.show" "important" }}

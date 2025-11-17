@@ -4,7 +4,7 @@ date: 2025-10-08
 tags: ["AWS reStart", "Scholarship", "Tips"]
 categories: ["Career", "Cloud", "AWS"]
 description: "My journey from taking the assessment to passing the selection process, tips, and lessons learned to help aspiring cloud professionals succeed in their own AWS re/Start applications."
-featured_image: "images/awsrestart.jpg"
+featured_image: "/images/awsrestart.jpg"
 draft: false
 show: default
 ---

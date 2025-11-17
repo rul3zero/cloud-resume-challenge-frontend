@@ -11,31 +11,40 @@
     <h1>{{ .Title }}</h1>
     {{ .Content }}
     
-    <section class="page-list">
+    <section class="recent-posts">
         {{ range .RegularPages }}
-            <article>
-                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                                                {{ with .Params.categories }}
-                                                    <div class="category-badges">
-                                                        <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
-                                                        {{ range . }}
-                                                            <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
-                                                        {{ end }}
-                                                    </div>
-                                                {{ end }}
-                                                {{ with .Params.tags }}
-                                                    <div class="tags tags-bottom">
-                                                        <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
-                                                        {{ range . }}
-                                                            <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
-                                                        {{ end }}
-                                                    </div>
-                                                {{ end }}
-                {{/* author removed */}}
-                <time>{{ .Date.Format "January 2, 2006" }}</time>
-                {{ if .Summary }}
-                    <p>{{ .Summary }}</p>
+            <article class="post-card">
+                {{ $page := . }}
+                {{ with .Params.featured_image }}
+                    <div class="featured-image">
+                        <a href="{{ $page.RelPermalink }}">
+                            <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy">
+                        </a>
+                    </div>
                 {{ end }}
+                <div class="post-content">
+                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    {{ with .Params.categories }}
+                        <div class="category-badges">
+                            <a class="meta-label" href="/categories/" aria-label="All categories">Categories:</a>
+                            {{ range . }}
+                                <a class="category-badge" href="/categories/{{ . | urlize }}">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                    {{ with .Params.tags }}
+                        <div class="tags tags-bottom">
+                            <a class="meta-label" href="/tags/" aria-label="All tags">Tags:</a>
+                            {{ range . }}
+                                <a class="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                    <time>{{ .Date.Format "January 2, 2006" }}</time>
+                    {{ with .Params.description }}
+                        <p class="post-summary">{{ . }}</p>
+                    {{ end }}
+                </div>
             </article>
         {{ end }}
     </section>

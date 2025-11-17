@@ -1,38 +1,132 @@
 ---
-
 title: "About Me"
-description: "Learn more about Joshua Carl Soguilon — Robotics and IoT Developer, AWS re/Start Learner, and Cybersecurity Enthusiast based in Cebu, Philippines."
+description: "Learn more about Joshua Carl Soguilon — AWS re/Start Scholar, Cybersecurity Enthusiast, and Cloud Engineer based in Cebu, Philippines."
 ---
 
-I specialize in creating **smart systems**, **connected devices**, and **automated solutions** that solve real-world problems. My background blends **electronics**, **embedded systems**, and **cloud technologies**, allowing me to develop projects that move seamlessly from hardware to software to cloud integration.
+I'm an IoT specialist exploring the field of cloud and cybersecurity. As an AWS re/Start graduate, I focus on building secure, scalable infrastructure and implementing security best practices across cloud and IT systems.
 
-## What I Do
+I work at the intersection of cloud computing, network security, and IoT. My approach combines technical depth with practical problem-solving, architecting cloud solutions, securing systems, building and developing from hardware to software solutions.
 
-I work on robotics and IoT prototypes, from small student projects to full product concepts. My process involves:
+---
 
-* Designing and programming embedded systems using **Arduino**, **ESP32**, and **Raspberry Pi**
-* Integrating sensors, actuators, and communication modules
-* Building cloud-connected devices with **AWS IoT**, **MQTT**, and **real-time dashboards**
-* Providing consultation and mentorship for students and startups exploring automation and IoT
+## Experiences
 
-I also have a growing interest in **cybersecurity and penetration testing**, combining secure design principles into my IoT projects to promote both innovation and safety in connected systems.
+### **AWS re/Start Graduate** | *November 2025*
+Successfully completed the intensive AWS re/Start program, gaining hands-on expertise in cloud architecture, networking protocols, Linux administration, and cybersecurity fundamentals. Developed proficiency in AWS core services including EC2, S3, VPC, and IAM while building real-world projects and preparing for industry certifications.
 
-## My Journey
+{{< gallery >}}
 
-My tech journey started with a curiosity about how devices communicate and make decisions. Over time, this evolved into building my own IoT prototypes and robotic systems. Alongside that, I’ve been pursuing **AWS Cloud Practitioner certification** through the **AWS re/Start program**, strengthening my foundation in **cloud computing**, **networking**, and **deployment pipelines**.
+/images/awsrestartlogo.jpg | AWS reStart | AWS reStart
+{{< /gallery >}}
 
-Through this path, I’ve learned that the best way to grow is by sharing what you build — so I created this website as my **central space** to document my projects, ideas, and experiments.
+### Part Time - **IoT & Embedded Systems Developer** | *2020 - Present* 
+Specialized in designing and implementing IoT solutions using Arduino, ESP32, and Raspberry Pi platforms. Created automated systems integrating sensors, actuators, and wireless communication modules. Developed custom firmware for microcontrollers and built cloud-connected devices for remote monitoring and control applications.
 
-## Interests
+**Achievements:**
 
-* Robotics and IoT Development
-* Embedded Systems Programming
-* Cloud Computing and DevOps
-* Ethical Hacking and Cybersecurity
-* Hardware Design and Prototyping
-* Education and Knowledge Sharing
+- **2020 National Robotics Competition** - [Champion](https://pinoyrobotgames.org/wp-content/uploads/2020/11/National-Robotics-Competition-2020.pdf)
 
-## Portfolio
+- **Philippine Air Force Security Systems Installer** - Developed the [ISS](https://drive.google.com/file/d/1e4nG52yGb50UTebOiU6_wqS4rm-DoDeQ/view), an intrusion alarm systems for their physical security premises in Mactan, Cebu
 
-Explore my latest works, prototypes, and experiments here:
-[View My Portfolio](https://drive.google.com/drive/folders/14ZM7oDFNs-N_vW9_cDwvUIQofEC_XXoQ?usp=drive_link)
+- **Student Coach & Mentor** - Created over 100+ robotics and IoT projects building and developing high school and college students ideas for innovations
+
+- **Competition Partner** - Collaborated with educators to prepare students for national-level competitions
+
+- **Regional Recognition** - Led teams that brought recognition to schools and regions through successful competition participation in research innovation projects, robotic games, and IoT-based solutions
+
+{{< gallery >}}
+/images/iss.png | Mactan Air Base Security Project | Intrusion Security System
+/images/roboticsteam.jpg | Competing Regional and National Competitions | Competition Partner
+/images/iotdeveloper.jpg | Competing Regional and National Competitions | Student Coach & Mentor
+{{< /gallery >}}
+
+---
+
+## Certifications & Badges
+
+### **Achievement Badges**
+
+{{< gallery >}}
+/images/badges/reStart.png | AWS re/Start Program Badge | Intensive cloud computing training completion
+/images/badges/AWSCCP.png | AWS Cloud Practitioner Badge | Cloud computing fundamentals certification
+/images/badges/OCI2024GAIOCP.png | Oracle Cloud AI Badge 2024 | Generative AI and cloud platform expertise
+/images/badges/OCI25FNDCFAV1.png | Oracle Cloud Foundations Badge | Cloud infrastructure fundamentals
+/images/badges/AWSEBadge.png | AWS Educate Badge | Educational program achievement
+/images/badges/introduction-to-cybersecurity.png | Introduction to Cybersecurity | Foundational security concepts
+{{< /gallery >}}
+
+{{< button href="https://linkedin.com/in/joshsoguilon" text="More on LinkedIn" center="true" style="primary">}}
+
+---
+
+### **Professional Certificates**
+
+{{< gallery >}}
+/images/certs/Oracle Cloud Infrastructure - Generative AI Professional.jpg | OCI Generative AI Professional | AI and machine learning on Oracle Cloud
+/images/certs/Google Cybersecurity Professional Certificate.jpg | Google Cybersecurity Professional | Security analysis and incident response training
+/images/certs/AZ900.jpg | Microsoft Azure Fundamentals AZ-900 | Cloud platform fundamentals and services
+/images/certs/googlecloudsecurity.png | Google Cloud Security Certificate | Cloud security best practices and implementation
+/images/certs/virtualicstraining.png | Virtual ICS Training Certificate | Industrial control systems security
+/images/certs/PAF.jpg | Professional Achievement Certificate | Technical excellence recognition
+{{< /gallery >}}
+
+{{< button href="https://linkedin.com/in/joshsoguilon" text="More on LinkedIn" center="true" style="primary">}}
+
+---
+
+*Currently pursuing: AWS Solutions Architect Associate, CompTIA Security+, CompTIA Linux+*  
+
+## Skills
+
+### **Cloud & Infrastructure**
+- AWS (EC2, S3, VPC, Lambda, API, Route53, IAM)
+- Infrastructure as Code (Terraform)
+- CI/CD with GitHub Actions
+- Linux system administration
+
+### **IoT & Embedded Systems**
+- Microcontroller programming (Arduino, ESP32, Raspberry Pi)
+- Sensor integration and automation systems
+- Wireless communication protocols (WiFi, Bluetooth, LoRa)
+- Circuit design and prototyping
+
+### **Security & Networking**
+- Intrusion detection and alarm systems
+- Network Security
+- Web application security
+- Vulnerability assessment
+
+### **Development & Automation**
+- Python scripting and automation
+- C/C++ embedded programming
+- Git version control
+- Hugo static site generation
+- Database management (MySQL, PostgreSQL)
+- API development and integration
+
+### **Leadership & Education**
+- Mentoring and Coaching
+- Strategy and preparation
+- Technical project management
+- Team collaboration
+---
+
+## More Projects
+
+Beyond my portfolio, I'm constantly experimenting with new technologies and building projects:
+
+- **Cloud Resume Challenge**: This very website! 
+
+    Learn More about AWS [Cloud-Resume-Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/)
+
+- **SmartHaus: IoT Based House Security and Monitoring**: 
+
+    Learn More about [SmartHaus](https://github.com/rul3zero/SmartHaus-App)
+
+- **Penetration Testing Lab**: 
+
+        COMING SOON!
+
+You can also check out my [GitHub](https://github.com/rul3zero) for the latest projects and experiments!
+
+---

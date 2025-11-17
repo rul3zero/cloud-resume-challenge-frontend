@@ -1,0 +1,15 @@
+{{/* Profile Image Shortcode - Cyberpunk styled profile picture */}}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "Profile" }}
+{{ $name := .Get "name" | default "User" }}
+
+<div class="profile-image-container">
+    <div class="profile-image-wrapper">
+        <div class="profile-image-glow"></div>
+        <img src="{{ $src }}" alt="{{ $alt }}" class="profile-image" loading="lazy">
+        <div class="profile-image-scanline"></div>
+    </div>
+    <div class="profile-decorations">
+        <span class="profile-output" data-name="{{ $name }}"></span>
+    </div>
+</div>

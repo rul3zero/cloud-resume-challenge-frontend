@@ -36,6 +36,8 @@
     <script defer src="{{ $lightboxJs.RelPermalink }}"></script>
     {{ $typewriterJs := resources.Get "js/typewriter.js" | minify }}
     <script defer src="{{ $typewriterJs.RelPermalink }}"></script>
+    {{ $profileTypewriterJs := resources.Get "js/profile-typewriter.js" | minify }}
+    <script defer src="{{ $profileTypewriterJs.RelPermalink }}"></script>
     {{ if .Site.Params.recaptchaKey }}
     {{ $recaptchaJs := resources.Get "js/recaptcha.js" | minify }}
     <script defer src="{{ $recaptchaJs.RelPermalink }}"></script>

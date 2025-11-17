@@ -4,7 +4,7 @@ date: 2025-10-16
 tags: ["CloudTrail", "Amazon Athena", "Logs", "Forensics", "Incident Response"]
 categories: ["Cloud", "AWS", "Security", "Linux"]
 description: " Executed a full security incident response on a simulated website breach. Used AWS CloudTrail for forensic analysis and leveraged Amazon Athena to query API logs."
-featured_image: "images/cloudtrail.png"
+featured_image: "/images/cloudtrail.png"
 draft: false
 show: default
 ---

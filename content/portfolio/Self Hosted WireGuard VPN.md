@@ -20,7 +20,7 @@ categories:
   - Linux
   - Security
 description: A self-hosted VPN and ad-blocking system I built to secure my personal internet traffic and enhance online privacy. I deployed a secure and high-performance tunnel WireGuard server with an Ad Blocking DNS on an AWS EC2 instance.
-featured_image: images/wireguard.jpg
+featured_image: /images/wireguard.jpg
 draft: false
 show: default
 ---

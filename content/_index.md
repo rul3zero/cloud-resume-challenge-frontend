@@ -2,18 +2,13 @@
 title: "Home"
 ---
 
-{{< terminal-figure src="image.jpg" alt="Joshua Carl Soguilon Profile" align="left" width="30" >}}
-My name is `Joshua Carl Soguilon`. I am an IoT/Robotics Developer and an AWS re/Start graduate. This is my personalized space where I share and document my works, projects, journeys, and ideas. 
+{{< profile-image src="/images/image.jpg" alt="Joshua Carl Soguilon" name="Joshua Carl Soguilon" >}}
 
-This is also the place where I offer my freelance services from building smart systems, cloud-integrated IoT solutions, and automation projects to creating custom tech tools tailored for specific needs.
+Welcome to my website. I am an IoT/Robotics Developer and an AWS re/Start graduate. This is my personalized space where I share and document my works, projects, journeys, and ideas.
 
-Whether you’re here to explore my portfolio, collaborate, or start a project together, welcome aboard. Let’s build something that matters. 
+This space is where I bring together my projects, ideas, and ongoing journey in building connected, intelligent and secure systems. 
 
-{{< clearfloat >}}
+From smart automation to cloud-enabled IoT solutions, I design and develop tech that solves real problems.
 
 {{< button href="/about" text="Learn More About Me" center="true" style="primary">}}
-
-{{< note type="info">}}
-This website is in still in progress
-{{< /note >}}
 
