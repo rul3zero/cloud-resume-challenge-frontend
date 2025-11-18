@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.status === 429) {
                 const limitMsg = data.message || 'Daily download limit reached';
                 const detailMsg = data.downloadsToday && data.maxDownloads 
-                    ? `\n\nYou've downloaded ${data.downloadsToday} time(s) today (max: ${data.maxDownloads})`
+                    ? ` You've downloaded ${data.downloadsToday} time(s) today (max: ${data.maxDownloads})`
                     : '';
                 throw new Error(limitMsg + detailMsg);
             }
@@ -152,9 +152,9 @@ function setButtonState(button, state, text) {
     button.disabled = true;
     
     const icons = {
-        loading: '<span class="spinner">⏳</span>',
-        success: '<span class="success-icon">✓</span>',
-        error: '<span class="error-icon">✗</span>'
+        loading: '<span class="spinner"></span>',
+        success: '<svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+        error: '<svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>'
     };
     
     button.innerHTML = `${icons[state] || ''}<span>${text}</span>`;
@@ -183,18 +183,45 @@ function showError(message) {
 }
 
 /**
- * Show notification to user
- * You can customize this to use your own toast/notification system
+ * Show notification to user with custom toast styling
  */
 function showNotification(message, type = 'info') {
-    // Simple alert for now - you can replace with a better UI notification
-    if (type === 'error') {
-        alert(`❌ ${message}`);
-    } else if (type === 'success') {
-        // Optional: Don't show alert for success, just console log
-        console.log(`✅ ${message}`);
-        // Or use a toast notification library
-    } else {
-        console.log(`ℹ️ ${message}`);
+    // Remove any existing notifications
+    const existingToast = document.querySelector('.resume-toast');
+    if (existingToast) {
+        existingToast.remove();
     }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `resume-toast resume-toast-${type}`;
+    
+    // Add icon based on type
+    const icons = {
+        success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+        error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>'
+    };
+    
+    toast.innerHTML = `
+        <div class="resume-toast-icon">${icons[type] || icons.info}</div>
+        <div class="resume-toast-message">${message}</div>
+    `;
+    
+    // Add to document
+    document.body.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(() => toast.classList.add('resume-toast-show'), 10);
+    
+    // Auto-remove after delay
+    const duration = type === 'error' ? 5000 : 3000;
+    setTimeout(() => {
+        toast.classList.remove('resume-toast-show');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+    
+    // Also log to console
+    const logPrefix = { success: '✓', error: '✗', info: 'ℹ' }[type] || '';
+    console.log(`${logPrefix} ${message}`);
 }
