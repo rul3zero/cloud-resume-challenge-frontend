@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-// Page transitions
-body {
+// Page transitions - only fade main content, not sidebar
+.page-main {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  
-  &.page-loaded {
-    opacity: 1;
-  }
-  
-  &.page-transitioning {
-    opacity: 0;
-  }
+}
+
+body.page-loaded .page-main {
+  opacity: 1;
+}
+
+body.page-transitioning .page-main {
+  opacity: 0;
 }
 
 // Core theme tokens
