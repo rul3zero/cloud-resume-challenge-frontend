@@ -28,6 +28,8 @@
     </div>
     {{ partial "footer.html" . }}
     
+    {{ $pageTransitionsJs := resources.Get "js/page-transitions.js" | minify }}
+    <script src="{{ $pageTransitionsJs.RelPermalink }}"></script>
     {{ $sidebarJs := resources.Get "js/sidebar.js" | minify }}
     <script defer src="{{ $sidebarJs.RelPermalink }}"></script>
     {{ $copyJs := resources.Get "js/copycode.js" | minify }}

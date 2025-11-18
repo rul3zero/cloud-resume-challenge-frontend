@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
+// Page transitions
+body {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  
+  &.page-loaded {
+    opacity: 1;
+  }
+  
+  &.page-transitioning {
+    opacity: 0;
+  }
+}
+
 // Core theme tokens
 $primary-color: #00e5ff;
 $accent-color: #18ffff;
