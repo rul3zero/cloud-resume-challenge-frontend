@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     await downloadResumeFromUrl(data.downloadUrl);
                     
                     // Show success notification
-                    showSuccess(`Resume downloaded successfully!${data.downloadCount ? ` (Download #${data.downloadCount})` : ''}`);
+                    showSuccess('Resume downloaded successfully!');
                 } else {
                     throw new Error('Download URL not provided');
                 }
