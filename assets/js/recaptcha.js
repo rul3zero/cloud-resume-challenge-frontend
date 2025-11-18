@@ -140,13 +140,9 @@ async function incrementVisitorCount(token) {
         
         if (data.success) {
             console.log('Visitor count:', data.count);
-            console.log('reCAPTCHA score:', data.score);
-            console.log('Duplicate:', data.duplicate);
-            console.log('Message:', data.message);
             
             // Cache the count for 24 hours
             cacheVisitorCount(data.count);
-            console.log('Cached visitor count for 24 hours');
             
             displayVisitorCount(data.count);
         } else {

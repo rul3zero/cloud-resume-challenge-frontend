@@ -84,8 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     resetButton(resumeBtn, originalButtonHTML);
                 }, 1500);
+            } else if (data.success === false && data.message) {
+                // Backend returned an error message
+                throw new Error(data.message);
             } else {
-                throw new Error(data.message || 'Download verification failed. Please try again.');
+                throw new Error('Download verification failed. Please try again.');
             }
         } catch (error) {
             console.error('Resume download failed:', error);
