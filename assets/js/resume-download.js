@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const data = await response.json();
             
+            // Check for rate limiting (429 Too Many Requests)
+            if (response.status === 429) {
+                const limitMsg = data.message || 'Daily download limit reached';
+                const detailMsg = data.downloadsToday && data.maxDownloads 
+                    ? `\n\nYou've downloaded ${data.downloadsToday} time(s) today (max: ${data.maxDownloads})`
+                    : '';
+                throw new Error(limitMsg + detailMsg);
+            }
+            
             // Check if verification was successful and download is allowed
             if (data.success && data.downloadAllowed) {
                 // Use the presigned S3 URL from backend
@@ -180,12 +189,12 @@ function showError(message) {
 function showNotification(message, type = 'info') {
     // Simple alert for now - you can replace with a better UI notification
     if (type === 'error') {
-        alert(` ${message}`);
+        alert(`❌ ${message}`);
     } else if (type === 'success') {
         // Optional: Don't show alert for success, just console log
-        console.log(`${message}`);
+        console.log(`✅ ${message}`);
         // Or use a toast notification library
     } else {
-        console.log(`${message}`);
+        console.log(`ℹ️ ${message}`);
     }
 }
