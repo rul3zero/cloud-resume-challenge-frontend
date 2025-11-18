@@ -43,6 +43,8 @@
     {{ if .Site.Params.recaptchaKey }}
     {{ $recaptchaJs := resources.Get "js/recaptcha.js" | minify }}
     <script defer src="{{ $recaptchaJs.RelPermalink }}"></script>
+    {{ $resumeDownloadJs := resources.Get "js/resume-download.js" | minify }}
+    <script defer src="{{ $resumeDownloadJs.RelPermalink }}"></script>
     {{ end }}
 </body>
 </html>
