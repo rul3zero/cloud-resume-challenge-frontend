@@ -15,13 +15,15 @@ This website isn't just an ordinary website, it's a fully automated, production-
 
 ## The Challenge
 
-The [Cloud Resume Challenge](https://cloudresumechallenge.dev/) is designed to bridge the gap between certification knowledge and real-world cloud engineering. 
+The [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/) is designed to bridge the gap between certification knowledge and real-world cloud engineering. 
 
 I started this challenge since my AWS re/Start journey. This challenge is not a part of the program rather it's a personal commitment I made.
 
 I needed to prove I could build something real.
 
 The requirements seemed straightforward: build a resume website with a visitor counter using AWS services. But it's not that easy.
+
+PS: This challenge is free to all. I did not purchase any materials or courses for this challenge—just dedication, persistence, and a passion for learning.
 
 ## Architecture
 
