@@ -52,19 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
             
-            if (!response.ok) {
-                throw new Error(`Server returned ${response.status}: ${response.statusText}`);
-            }
-            
             const data = await response.json();
             
             // Check for rate limiting (429 Too Many Requests)
             if (response.status === 429) {
                 const limitMsg = data.message || 'Daily download limit reached';
                 const detailMsg = data.downloadsToday && data.maxDownloads 
-                    ? ` You've downloaded ${data.downloadsToday} time(s) today (max: ${data.maxDownloads})`
+                    ? `\n\nYou've downloaded ${data.downloadsToday} time(s) today (max: ${data.maxDownloads})`
                     : '';
                 throw new Error(limitMsg + detailMsg);
+            }
+            
+            if (!response.ok) {
+                throw new Error(data.message || `Server returned ${response.status}: ${response.statusText}`);
             }
             
             // Check if verification was successful and download is allowed
