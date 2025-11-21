@@ -1,7 +1,7 @@
 ---
 title: "Building My Cloud Resume: A 3 Months Journey with Terraform and AWS"
 date: 2025-11-17
-tags: ["AWS", "Terraform", "CI/CD", "GitHub Actions", "Lambda", "DynamoDB", "CloudFront", "S3", "API Gateway"]
+tags: ["AWS", "Terraform", "CI/CD", "GitHub Actions", "Lambda", "DynamoDB", "CloudFront", "S3", "API Gateway", "AWS CLI", "AWS Route53", "ACM"]
 categories: ["Cloud", "AWS", "DevOps"]
 description: "My complete Cloud Resume Challenge implementation using Terraform for Infrastructure as Code. Built a scalable, production-ready website with visitor tracking, bot protection, and automated CI/CD deployment that is deployable in minutes."
 featured_image: "/images/cloud-resume-challenge/cloudresumechallengefeatured.png"

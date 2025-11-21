@@ -3,9 +3,9 @@ title: "About Me"
 description: "Learn more about Joshua Carl Soguilon — AWS re/Start Scholar, Cybersecurity Enthusiast, and Cloud Engineer based in Cebu, Philippines."
 ---
 
-I'm an IoT specialist exploring the field of cloud and cybersecurity. As an AWS re/Start graduate, I focus on building secure, scalable infrastructure and implementing security best practices across cloud and IT systems.
+I'm an IoT specialist exploring the field of cloud and cybersecurity. I focus on building secure, scalable infrastructure and implementing security best practices across cloud and IT systems.
 
-I work at the intersection of cloud computing, network security, and IoT. My approach combines technical depth with practical problem-solving, architecting cloud solutions, securing systems, building and developing from hardware to software solutions.
+I work at the intersection of cloud computing, linux technologies, security, and IoT. My approach combines technical depth with practical problem-solving, architecting cloud solutions, securing systems, building and developing from hardware to software solutions.
 
 ---
 
@@ -47,11 +47,11 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 ### **Achievement Badges**
 
 {{< gallery >}}
-/images/badges/reStart.png | AWS re/Start Program Badge | Intensive cloud computing training completion
+/images/linuxplusbadge.png | CompTIA Linux+ Badge | CompTIA Linux+ certification
 /images/badges/AWSCCP.png | AWS Cloud Practitioner Badge | Cloud computing fundamentals certification
 /images/badges/OCI2024GAIOCP.png | Oracle Cloud AI Badge 2024 | Generative AI and cloud platform expertise
 /images/badges/OCI25FNDCFAV1.png | Oracle Cloud Foundations Badge | Cloud infrastructure fundamentals
-/images/badges/AWSEBadge.png | AWS Educate Badge | Educational program achievement
+/images/badges/reStart.png | AWS re/Start Program Badge | Intensive cloud computing training completion
 /images/badges/introduction-to-cybersecurity.png | Introduction to Cybersecurity | Foundational security concepts
 {{< /gallery >}}
 
@@ -62,19 +62,19 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 ### **Professional Certificates**
 
 {{< gallery >}}
+/images/linuxpluscertificate.png | CompTIA Linux+ Certificate | CompTIA Linux+ certification
 /images/certs/Oracle Cloud Infrastructure - Generative AI Professional.jpg | OCI Generative AI Professional | AI and machine learning on Oracle Cloud
 /images/certs/Google Cybersecurity Professional Certificate.jpg | Google Cybersecurity Professional | Security analysis and incident response training
 /images/certs/AZ900.jpg | Microsoft Azure Fundamentals AZ-900 | Cloud platform fundamentals and services
 /images/certs/googlecloudsecurity.png | Google Cloud Security Certificate | Cloud security best practices and implementation
 /images/certs/virtualicstraining.png | Virtual ICS Training Certificate | Industrial control systems security
-/images/certs/PAF.jpg | Professional Achievement Certificate | Technical excellence recognition
 {{< /gallery >}}
 
 {{< button href="https://linkedin.com/in/joshsoguilon" text="More on LinkedIn" center="true" style="primary">}}
 
 ---
 
-*Currently pursuing: AWS Solutions Architect Associate, CompTIA Security+, CompTIA Linux+*  
+*Currently pursuing: AWS Solutions Architect Associate, CompTIA Security+*  
 
 ## Skills
 
