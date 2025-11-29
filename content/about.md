@@ -49,10 +49,10 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 {{< gallery >}}
 /images/linuxplusbadge.png | CompTIA Linux+ Badge | CompTIA Linux+ certification
 /images/badges/AWSCCP.png | AWS Cloud Practitioner Badge | Cloud computing fundamentals certification
-/images/badges/OCI2024GAIOCP.png | Oracle Cloud AI Badge 2024 | Generative AI and cloud platform expertise
+/images/badges/OCI2025MCAOCP.png | Oracle Cloud MultiCloud Badge 2025 | MultiCloud Architecture Skills
 /images/badges/OCI25FNDCFAV1.png | Oracle Cloud Foundations Badge | Cloud infrastructure fundamentals
 /images/badges/reStart.png | AWS re/Start Program Badge | Intensive cloud computing training completion
-/images/badges/introduction-to-cybersecurity.png | Introduction to Cybersecurity | Foundational security concepts
+/images/badges/googlecybersecurity.png | Google Cybersecurity Professional | Cybersecurity Foundations
 {{< /gallery >}}
 
 {{< button href="https://linkedin.com/in/joshsoguilon" text="More on LinkedIn" center="true" style="primary">}}
@@ -63,7 +63,7 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 
 {{< gallery >}}
 /images/linuxpluscertificate.png | CompTIA Linux+ Certificate | CompTIA Linux+ certification
-/images/certs/Oracle Cloud Infrastructure - Generative AI Professional.jpg | OCI Generative AI Professional | AI and machine learning on Oracle Cloud
+/images/certs/oracle-multicloud.png | OCI MultiCloud Architect Professional | MultiCloud Architect
 /images/certs/Google Cybersecurity Professional Certificate.jpg | Google Cybersecurity Professional | Security analysis and incident response training
 /images/certs/AZ900.jpg | Microsoft Azure Fundamentals AZ-900 | Cloud platform fundamentals and services
 /images/certs/googlecloudsecurity.png | Google Cloud Security Certificate | Cloud security best practices and implementation

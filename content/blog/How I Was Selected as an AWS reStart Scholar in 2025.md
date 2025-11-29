@@ -1,5 +1,5 @@
 ---
-title: How I Was Selected as an AWS re/Start Scholar in 2025
+title: How I Was Selected as an AWS reStart Scholar in 2025
 date: 2025-10-08
 tags: ["AWS reStart", "Scholarship", "Tips"]
 categories: ["Career", "Cloud", "AWS"]
