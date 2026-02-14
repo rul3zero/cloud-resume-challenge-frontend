@@ -3,15 +3,24 @@ title: "About Me"
 description: "Learn more about Joshua Carl Soguilon — AWS re/Start Scholar, Cybersecurity Enthusiast, and Cloud Engineer based in Cebu, Philippines."
 ---
 
-I'm an IoT specialist exploring the field of cloud and cybersecurity. I focus on building secure, scalable infrastructure and implementing security best practices across cloud and IT systems.
+I'm a Technical Support Engineer specializing in Linux/Networking and a part-time IoT/Robotics Developer focusing in building innovative projects that involves automation, security, AI and cloud.
 
-I work at the intersection of cloud computing, linux technologies, security, and IoT. My approach combines technical depth with practical problem-solving, architecting cloud solutions, securing systems, building and developing from hardware to software solutions.
+My approach combines technical depth with practical problem-solving, architecting cloud solutions, securing systems, building and developing from hardware to software solutions.
 
 ---
-
 ## Experiences
 
-### **AWS re/Start Graduate** | *November 2025*
+### **Technical Support Engineer (Linux/Network)** | *January 2025 - Present*
+Provide hands-on customer support for media services (VOD, IPTV, Photos), focusing on Linux systems, networking, and service reliability.
+
+**Highlights:**
+- Troubleshoot incidents and escalations using CLI tools, logs, dashboards, and networking analysis (TCP/IP, DNS, Wireshark).
+- Collaborate with customer teams, product, engineering, and SRE to resolve outages and improve uptime.
+- Build documentation, FAQs, and onboarding materials to improve customer self-service.
+- Monitor delivery progress, key metrics, and SRT stream health.
+- Exposure to cloud networking (AWS/Azure/GCP) and streaming/CDN technologies (HLS, DASH, multicast, caching).
+   
+### **AWS re/Start Graduate** | *June 2025 - November 2025*
 Successfully completed the intensive AWS re/Start program, gaining hands-on expertise in cloud architecture, networking protocols, Linux administration, and cybersecurity fundamentals. Developed proficiency in AWS core services including EC2, S3, VPC, and IAM while building real-world projects and preparing for industry certifications.
 
 {{< gallery >}}
@@ -74,15 +83,19 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 
 ---
 
-*Currently pursuing: AWS Solutions Architect Associate, CompTIA Security+*  
+*Currently pursuing: CCNA, AWS Solutions Architect Associate, CompTIA Security+*  
 
 ## Skills
 
 ### **Cloud & Infrastructure**
 - AWS (EC2, S3, VPC, Lambda, API, Route53, IAM)
+- Cloud networking (AWS, Azure, GCP)
+- Linux system administration (Ubuntu Server)
+- Docker containerization and KVM virtualization
+- Kairos cluster installation and lab environment setup
 - Infrastructure as Code (Terraform)
 - CI/CD with GitHub Actions
-- Linux system administration
+- Linux partitioning and system hardening
 
 ### **IoT & Embedded Systems**
 - Microcontroller programming (Arduino, ESP32, Raspberry Pi)
@@ -95,6 +108,11 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 - Network Security
 - Web application security
 - Vulnerability assessment
+- TCP/IP networking (TCP, UDP, HTTP, DNS, IPv4, IPv6, BGP, multicast)
+- VPN configuration
+- Network troubleshooting (Wireshark, CLI tools)
+- Firewall configuration (UFW)
+- OS Encryption (LUKS)
 
 ### **Development & Automation**
 - Python scripting and automation
@@ -103,6 +121,17 @@ Specialized in designing and implementing IoT solutions using Arduino, ESP32, an
 - Hugo static site generation
 - Database management (MySQL, PostgreSQL)
 - API development and integration
+
+### **Support & Operations**
+- Incident triage and escalation handling
+- Monitoring and performance analysis
+- Documentation, FAQs, and customer enablement
+- Cross-team collaboration (product, engineering, SRE)
+
+### **Media Delivery & Streaming**
+- VOD, IPTV, and photo delivery support
+- CDN and streaming basics (HLS, DASH)
+- SRT stream monitoring
 
 ### **Leadership & Education**
 - Mentoring and Coaching
@@ -119,7 +148,7 @@ Beyond my portfolio, I'm constantly experimenting with new technologies and buil
 
     Learn More about AWS [Cloud-Resume-Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/)
 
-- **SmartHaus: IoT Based House Security and Monitoring**: 
+- **SmartHaus: IoT Based House Security and Monitoring with AI Assistant**: 
 
     Learn More about [SmartHaus](https://github.com/rul3zero/SmartHaus-App)
 
